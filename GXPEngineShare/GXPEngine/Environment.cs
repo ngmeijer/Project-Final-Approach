@@ -3,8 +3,6 @@ using GXPEngine;
 
 public class Environment : GameObject
 {
-    public HUD _gameHUD { get; private set; }
-
     public Penguin _penguin { get; private set; }
     public Penguin _penguin2 { get; private set; }
     public Penguin _penguin3 { get; private set; }
@@ -13,8 +11,6 @@ public class Environment : GameObject
 
     public bool clickedPenguins { get; set; }
     public bool residenceActive { get; set; }
-
-    public Residence _residencePenguins { get; set; }
 
     public Environment()
     {
@@ -58,16 +54,8 @@ public class Environment : GameObject
             if(_penguin.HitTestPoint(Input.mouseX, Input.mouseY))
             {
                 clickedPenguins = true;
+                residenceActive = true;
             }
         }
-    }
-
-    private void HideMainArea()
-    {
-        _penguin.visible = false;
-        _penguin2.visible = false;
-        _penguin3.visible = false;
-        _penguin4.visible = false;
-        _penguin5.visible = false;
     }
 }

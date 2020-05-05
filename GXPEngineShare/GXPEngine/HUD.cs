@@ -18,7 +18,7 @@ public class HUD : GameObject
     {
         _backButton = new BackButton();
         AddChild(_backButton);
-        _backButton.visible = false;
+        _backButton.visible = true;
 
         _backToMenuButton = new StartButton();
         AddChild(_backToMenuButton);
@@ -33,35 +33,11 @@ public class HUD : GameObject
 
     private void BackToMenu()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_backToMenuButton.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                backToMainMenu = true;
-            }
-        }
+        
     }
 
     private void CheckForResidenceActivity()
     {
-        if (activeResidence)
-        {
-            _backButton.visible = true;
-            _backToMenuButton.visible = false;
-        }
-
-        BackToMainArea();
-    }
-
-    private void BackToMainArea()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_backButton.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                _backToMenuButton.visible = true;
-
-            }
-        }
+        
     }
 }

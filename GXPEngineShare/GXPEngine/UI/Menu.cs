@@ -3,32 +3,46 @@ using GXPEngine;
 
 public class Menu : GameObject
 {
+    #region Variables
+
+    //Script references
     private StartButton _startButton;
-    private Environment _environment;
+
+    //Bools
+    public bool clickedStart { get; private set; }
+    public bool destroyMenu { get; set; }
 
     public bool levelStarted { get; set; }
 
-    public Menu()
+    //Sprites
+
+    #endregion
+
+    #region Constructor & Update method
+
+    public Menu() : base()
     {
         _startButton = new StartButton();
         AddChild(_startButton);
-
-        _startButton.SetXY(game.width / 2 - _startButton.width / 2, game.height / 2 - _startButton.height / 2);
+        _startButton.x = (game.width / 2) - (_startButton.width / 2);
+        _startButton.y = 200;
     }
-    
+
     private void Update()
     {
-        CheckInput();
+        ManageButtonVisibility();
+        CheckStartInput();
     }
 
-    private void CheckInput()
+    #endregion
+
+    private void ManageButtonVisibility()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_startButton.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                levelStarted = true;
-            }
-        }
+        
+    }
+
+    private void CheckStartInput()
+    {
+        
     }
 }

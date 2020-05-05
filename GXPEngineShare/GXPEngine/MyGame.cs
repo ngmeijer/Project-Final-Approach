@@ -9,7 +9,7 @@ public class MyGame : Game
 
 	public MyGame() : base(800, 600, false)
 	{
-		_sceneManager = new SceneManager(_menu);
+		_sceneManager = new SceneManager();
 		AddChild(_sceneManager);
 	}
 

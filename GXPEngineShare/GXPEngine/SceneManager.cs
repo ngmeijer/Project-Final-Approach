@@ -5,86 +5,69 @@ public class SceneManager : GameObject
 {
     public Menu _menu { get; private set; }
 
-    private Environment _environment;
+    public HUD _gameHUD { get; private set; }
 
-    private HUD _gameHUD;
+    public Environment _environment { get; private set; }
 
-    public Residence _residencePenguins;
+    public Residence _penguinResidence;
 
-    public SceneManager(Menu menuScript)
+    public SceneManager()
     {
         _menu = new Menu();
         AddChild(_menu);
 
-        _environment = new Environment();
-        AddChild(_environment);
-        _environment.visible = false;
-
-        _residencePenguins = new Residence();
-        AddChild(_residencePenguins);
-        _residencePenguins.visible = false;
+        _penguinResidence = new Residence();
+        _penguinResidence.x = game.width / 2;
 
         _gameHUD = new HUD();
-        AddChild(_gameHUD);
-        _gameHUD.visible = false;
-
-        _residencePenguins.x = game.width / 2 - _residencePenguins.width / 2;
-        _residencePenguins.y = game.height / 2 - _residencePenguins.height / 2;
     }
 
     private void Update()
     {
-        CheckGameStart();
-        CheckResidenceClick();
-        CheckMainArea();
+        CheckLevelStart();
+        CheckResidenceActivity();
         CheckGameReset();
     }
 
-    private void CheckGameStart()
+    private void CheckLevelStart()
     {
         if (_menu.levelStarted)
         {
-            _environment.visible = true;
-
-            _gameHUD.visible = true;
-
-            _menu.visible = false;
-
+            _environment = new Environment();
+            AddChild(_environment);
+            AddChild(_gameHUD);
             _menu.levelStarted = false;
+            RemoveChild(_menu);
         }
     }
 
     private void CheckGameReset()
     {
-        if (_environment != null)
+        if (_gameHUD.backToMainMenu)
         {
-            if (_gameHUD.backToMainMenu)
-            {
-                _menu.visible = true;
-                _environment.visible = false;
-                _gameHUD.visible = false;
-            }
+            _menu = new Menu();
+            AddChild(_menu);
+            RemoveChild(_environment);
+            _gameHUD.backToMainMenu = false;
         }
     }
 
-    private void CheckResidenceClick()
+    private void CheckResidenceActivity()
     {
         if (_environment != null)
         {
-            if (_environment.clickedPenguins)
+            if (_environment.residenceActive)
             {
-                _environment.visible = false;
-                _residencePenguins.visible = true;
-                _gameHUD.activeResidence = true;
+                AddChild(_penguinResidence);
+                RemoveChild(_environment);
             }
-        }
-    }
 
-    private void CheckMainArea()
-    {
+        }
+
         if (_gameHUD.mainAreaActive)
         {
-            _environment.visible = true;
+            AddChild(_environment);
+            RemoveChild(_penguinResidence);
         }
     }
 }
