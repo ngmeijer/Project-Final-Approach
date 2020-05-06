@@ -6,38 +6,32 @@ public class HUD : GameObject
     private BackButton _backButton;
     public StartButton _backToMenuButton { get; set; }
 
-    private Environment _environment;
+    public bool clickedBack { get; set; }
 
-    public bool activeResidence {get; set;}
-    public bool mainAreaActive {get; set; }
+    public bool mainAreaActive { get; set; }
 
     public bool backToMainMenu { get; set; }
-
 
     public HUD()
     {
         _backButton = new BackButton();
         AddChild(_backButton);
-        _backButton.visible = true;
-
-        _backToMenuButton = new StartButton();
-        AddChild(_backToMenuButton);
-        _backToMenuButton.y += 100;
     }
 
     private void Update()
     {
-        BackToMenu();
-        CheckForResidenceActivity();
+        CheckForBackRequest();
     }
 
-    private void BackToMenu()
+    private void CheckForBackRequest()
     {
-        
-    }
-
-    private void CheckForResidenceActivity()
-    {
-        
+        if (_backButton.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                clickedBack = true;
+                mainAreaActive = true;
+            }
+        }
     }
 }

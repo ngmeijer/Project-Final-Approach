@@ -36,6 +36,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animals\Giraffe.cs" />
+    <Compile Include="Animals\Hippo.cs" />
+    <Compile Include="Animals\Zebra.cs" />
+    <Compile Include="Animals\Turtle.cs" />
+    <Compile Include="Animals\Lion.cs" />
+    <Compile Include="Animals\Monkey.cs" />
+    <Compile Include="Animals\SeaLion.cs" />
     <Compile Include="Animals\Penguin.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="HUD.cs" />

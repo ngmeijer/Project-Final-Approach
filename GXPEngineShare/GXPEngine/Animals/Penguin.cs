@@ -3,7 +3,7 @@ using GXPEngine;
 
 public class Penguin : Sprite
 {
-    public Penguin() : base("penguin.png")
+    public Penguin() : base("Penguin.png")
     {
 
     }

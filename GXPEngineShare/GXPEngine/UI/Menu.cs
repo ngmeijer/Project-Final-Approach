@@ -36,13 +36,22 @@ public class Menu : GameObject
 
     #endregion
 
-    private void ManageButtonVisibility()
-    {
-        
-    }
 
     private void CheckStartInput()
     {
-        
+        if(_startButton.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                levelStarted = true;
+            }
+        }
+    }
+    private void ManageButtonVisibility()
+    {
+        if (levelStarted)
+        {
+            
+        }
     }
 }

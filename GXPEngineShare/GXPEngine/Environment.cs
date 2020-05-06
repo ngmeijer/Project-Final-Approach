@@ -4,40 +4,62 @@ using GXPEngine;
 public class Environment : GameObject
 {
     public Penguin _penguin { get; private set; }
-    public Penguin _penguin2 { get; private set; }
-    public Penguin _penguin3 { get; private set; }
-    public Penguin _penguin4 { get; private set; }
-    public Penguin _penguin5 { get; private set; }
+    public Zebra _zebra { get; private set; }
+    public SeaLion _seaLion { get; private set; }
+    public Turtle _turtle { get; private set; }
+    public Monkey _monkey { get; private set; }
+    public Lion _lion { get; private set; }
+    public Giraffe _giraffe { get; private set; }
+    public Hippo _hippo { get; private set; }
 
-    public bool clickedPenguins { get; set; }
-    public bool residenceActive { get; set; }
+    public bool _penguinsActive { get; set; }
+    public bool _zebraActive { get; set; }
+    public bool _seaLionActive { get; set; }
+    public bool _turtleActive { get; set; }
+    public bool _monkeyActive { get; set; }
+    public bool _lionActive { get; set; }
+    public bool _giraffeActive { get; set; }
+    public bool _hippoActive { get; set; }
+
 
     public Environment()
     {
         _penguin = new Penguin();
         AddChild(_penguin);
-        _penguin.SetXY(50, 450);
+        _penguin.SetXY(100, 950);
 
-        _penguin2 = new Penguin();
-        AddChild(_penguin2);
-        _penguin2.SetXY(100, 300);
+        _zebra = new Zebra();
+        AddChild(_zebra);
+        _zebra.SetXY(200, 700);
 
-        _penguin3 = new Penguin();
-        AddChild(_penguin3);
-        _penguin3.SetXY(150, 150);
+        _seaLion = new SeaLion();
+        AddChild(_seaLion);
+        _seaLion.SetXY(350, 500);
 
-        _penguin4 = new Penguin();
-        AddChild(_penguin4);
-        _penguin4.SetXY(300, 0);
+        _turtle = new Turtle();
+        AddChild(_turtle);
+        _turtle.SetXY(500, 200);
 
-        _penguin5 = new Penguin();
-        AddChild(_penguin5);
-        _penguin5.SetXY(500, 150);
+        _monkey = new Monkey();
+        AddChild(_monkey);
+        _monkey.SetXY(750, 200);
+
+        _lion = new Lion();
+        AddChild(_lion);
+        _lion.SetXY(900, 500);
+
+        _giraffe = new Giraffe();
+        AddChild(_giraffe);
+        _giraffe.SetXY(1200, 650);
+
+        _hippo = new Hippo();
+        AddChild(_hippo);
+        _hippo.SetXY(1500, 950);
     }
 
     private void Update()
     {
-        ClickPenguins();
+        ClickResidence();
     }
 
     //Trying out to place items relative to screen size.
@@ -47,15 +69,70 @@ public class Environment : GameObject
     //    int yPixelsPercent = yPixels / game.height;
     //}
 
-    private void ClickPenguins()
+    private void ClickResidence()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (_penguin.HitTestPoint(Input.mouseX, Input.mouseY))
         {
-            if(_penguin.HitTestPoint(Input.mouseX, Input.mouseY))
+            if (Input.GetMouseButtonDown(0))
             {
-                clickedPenguins = true;
-                residenceActive = true;
+                _penguinsActive = true;
             }
         }
+
+        //if (_zebra.HitTestPoint(Input.mouseX, Input.mouseY))
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _zebraActive = true;
+        //    }
+        //}
+
+        //if (_seaLion.HitTestPoint(Input.mouseX, Input.mouseY))
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _seaLionActive = true;
+        //    }
+        //}
+
+        //if (_turtle.HitTestPoint(Input.mouseX, Input.mouseY))
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _turtleActive = true;
+        //    }
+        //}
+
+        //if (_monkey.HitTestPoint(Input.mouseX, Input.mouseY))
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _monkeyActive = true;
+        //    }
+        //}
+
+        //if (_lion.HitTestPoint(Input.mouseX, Input.mouseY))
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _lionActive = true;
+        //    }
+        //}
+
+        //if (_giraffe.HitTestPoint(Input.mouseX, Input.mouseY))
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _giraffeActive = true;
+        //    }
+        //}
+
+        //if (_hippo.HitTestPoint(Input.mouseX, Input.mouseY))
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _hippoActive = true;
+        //    }
+        //}
     }
 }
