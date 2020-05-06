@@ -28,6 +28,7 @@ public class SceneManager : GameObject
         _gameHUD = new HUD();
         AddChild(_gameHUD);
         _gameHUD.visible = false;
+        SetChildIndex(_gameHUD, 0);
 
         _environment = new Environment();
         AddChild(_environment);
@@ -88,70 +89,63 @@ public class SceneManager : GameObject
         if (residenceActive)
         {
             _gameHUD.visible = true;
+            SetChildIndex(_gameHUD, 1000);
         }
 
         if (_environment._penguinsActive)
         {
             residenceActive = true;
             _penguinResidence._penguinActive = true;
-            _penguinResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_penguinResidence);
         }
 
         if (_environment._zebraActive)
         {
             residenceActive = true;
             _zebraResidence._zebraActive = true;
-            _zebraResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_zebraResidence);
         }
 
         if (_environment._seaLionActive)
         {
             residenceActive = true;
             _seaLionResidence._seaLionActive = true;
-            _seaLionResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_seaLionResidence);
         }
 
         if (_environment._turtleActive)
         {
             residenceActive = true;
             _turtleResidence._turtleActive = true;
-            _turtleResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_seaLionResidence);
         }
 
         if (_environment._monkeyActive)
         {
             residenceActive = true;
             _monkeyResidence._monkeyActive = true;
-            _monkeyResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_monkeyResidence);
         }
 
         if (_environment._lionActive)
         {
             residenceActive = true;
             _lionResidence._lionActive = true;
-            _lionResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_lionResidence);
         }
 
         if (_environment._giraffeActive)
         {
             residenceActive = true;
             _giraffeResidence._giraffeActive = true;
-            _giraffeResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_giraffeResidence);
         }
 
         if (_environment._hippoActive)
         {
             residenceActive = true;
             _hippoResidence._hippoActive = true;
-            _hippoResidence.x = 0;
-            _environment.x = 1920;
+            ChangeAnimals(_hippoResidence);
         }
 
         //////////////////////////////////////
@@ -190,7 +184,8 @@ public class SceneManager : GameObject
 
             if (_environment._zebraActive)
             {
-
+                _zebraResidence._zebraActive = false;
+                _environment._penguin.visible = true;
             }
 
             if (_environment._seaLionActive)
@@ -266,5 +261,11 @@ public class SceneManager : GameObject
 
             }
         }
+    }
+
+    private void ChangeAnimals(GameObject changeTo)
+    {
+        _environment.x = 1920;
+        changeTo.x = 0;
     }
 }

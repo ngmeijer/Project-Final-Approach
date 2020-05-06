@@ -12,6 +12,8 @@ public class Residence : GameObject
     private Giraffe _giraffe;
     private Hippo _hippo;
 
+    private Sprite _penguinBackground;
+
     public bool _penguinActive;
     public bool _zebraActive;
     public bool _seaLionActive;
@@ -35,6 +37,9 @@ public class Residence : GameObject
     {
         if (_penguinActive)
         {
+            _penguinBackground = new Sprite("TurtleBackground.png");
+            AddChild(_penguinBackground);
+
             _penguin = new Penguin();
             AddChild(_penguin);
             _penguin.x = game.width / 2;
@@ -45,7 +50,7 @@ public class Residence : GameObject
         {
             _zebra = new Zebra();
             AddChild(_zebra);
-            _zebra.x = game.width / 2;
+            _zebra.x = game.width / 2 + 100;
             _zebra.y = game.height / 2;
         }
 
@@ -55,6 +60,8 @@ public class Residence : GameObject
             AddChild(_seaLion);
             _seaLion.x = game.width / 2;
             _seaLion.y = game.height / 2;
+
+            
         }
 
         if (_turtleActive)
