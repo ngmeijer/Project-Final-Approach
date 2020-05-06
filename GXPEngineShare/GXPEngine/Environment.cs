@@ -79,60 +79,60 @@ public class Environment : GameObject
             }
         }
 
-        //if (_zebra.HitTestPoint(Input.mouseX, Input.mouseY))
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _zebraActive = true;
-        //    }
-        //}
+        if (_zebra.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _zebraActive = true;
+            }
+        }
 
-        //if (_seaLion.HitTestPoint(Input.mouseX, Input.mouseY))
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _seaLionActive = true;
-        //    }
-        //}
+        if (_seaLion.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _seaLionActive = true;
+            }
+        }
 
-        //if (_turtle.HitTestPoint(Input.mouseX, Input.mouseY))
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _turtleActive = true;
-        //    }
-        //}
+        if (_turtle.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _turtleActive = true;
+            }
+        }
 
-        //if (_monkey.HitTestPoint(Input.mouseX, Input.mouseY))
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _monkeyActive = true;
-        //    }
-        //}
+        if (_monkey.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _monkeyActive = true;
+            }
+        }
 
-        //if (_lion.HitTestPoint(Input.mouseX, Input.mouseY))
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _lionActive = true;
-        //    }
-        //}
+        if (_lion.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _lionActive = true;
+            }
+        }
 
-        //if (_giraffe.HitTestPoint(Input.mouseX, Input.mouseY))
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _giraffeActive = true;
-        //    }
-        //}
+        if (_giraffe.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _giraffeActive = true;
+            }
+        }
 
-        //if (_hippo.HitTestPoint(Input.mouseX, Input.mouseY))
-        //{
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        _hippoActive = true;
-        //    }
-        //}
+        if (_hippo.HitTestPoint(Input.mouseX, Input.mouseY))
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _hippoActive = true;
+            }
+        }
     }
 }

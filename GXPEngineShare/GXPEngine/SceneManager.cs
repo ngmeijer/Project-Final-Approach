@@ -33,39 +33,38 @@ public class SceneManager : GameObject
         AddChild(_environment);
         _environment.x = 1920;
 
-
         //Animal residences
         _penguinResidence = new Residence();
         AddChild(_penguinResidence);
         _penguinResidence.x = 1920;
 
-        //_zebraResidence = new Residence();
-        //AddChild(_zebraResidence);
-        //_zebraResidence.x = 1920;
+        _zebraResidence = new Residence();
+        AddChild(_zebraResidence);
+        _zebraResidence.x = 1920;
 
-        //_seaLionResidence = new Residence();
-        //AddChild(_seaLionResidence);
-        //_seaLionResidence.x = 1920;
+        _seaLionResidence = new Residence();
+        AddChild(_seaLionResidence);
+        _seaLionResidence.x = 1920;
 
-        //_turtleResidence = new Residence();
-        //AddChild(_turtleResidence);
-        //_turtleResidence.x = 1920;
+        _turtleResidence = new Residence();
+        AddChild(_turtleResidence);
+        _turtleResidence.x = 1920;
 
-        //_monkeyResidence = new Residence();
-        //AddChild(_monkeyResidence);
-        //_monkeyResidence.x = 1920;
+        _monkeyResidence = new Residence();
+        AddChild(_monkeyResidence);
+        _monkeyResidence.x = 1920;
 
-        //_lionResidence = new Residence();
-        //AddChild(_lionResidence);
-        //_lionResidence.x = 1920;
+        _lionResidence = new Residence();
+        AddChild(_lionResidence);
+        _lionResidence.x = 1920;
 
-        //_giraffeResidence = new Residence();
-        //AddChild(_giraffeResidence);
-        //_giraffeResidence.x = 1920;
+        _giraffeResidence = new Residence();
+        AddChild(_giraffeResidence);
+        _giraffeResidence.x = 1920;
 
-        //_hippoResidence = new Residence();
-        //AddChild(_hippoResidence);
-        //_hippoResidence.x = 1920;
+        _hippoResidence = new Residence();
+        AddChild(_hippoResidence);
+        _hippoResidence.x = 1920;
         /////////////////////
     }
 
@@ -73,7 +72,6 @@ public class SceneManager : GameObject
     {
         CheckLevelStart();
         CheckResidenceActivity();
-        CheckGameReset();
     }
 
     private void CheckLevelStart()
@@ -89,78 +87,87 @@ public class SceneManager : GameObject
         }
     }
 
-    private void CheckGameReset()
-    {
-
-    }
-
     private void CheckResidenceActivity()
     {
         if (_environment._penguinsActive)
         {
-            Console.WriteLine("reached this");
             _penguinResidence._penguinActive = true;
             _penguinResidence.x = 0;
             _environment.x = 1920;
         }
 
-        if (_gameHUD.clickedBack)
-        {
-            _environment._penguinsActive = false;
-            _penguinResidence.x = 1920;
-            _environment.x = 0;
-            _gameHUD.clickedBack = false;
-        }
-
         if (_environment._zebraActive)
         {
+            _zebraResidence._zebraActive = true;
             _zebraResidence.x = 0;
             _environment.x = 1920;
         }
 
         if (_environment._seaLionActive)
         {
-            _seaLionResidence.x = 0;
             _seaLionResidence._seaLionActive = true;
+            _seaLionResidence.x = 0;
             _environment.x = 1920;
         }
 
         if (_environment._turtleActive)
         {
+            _turtleResidence._turtleActive = true;
             _turtleResidence.x = 0;
             _environment.x = 1920;
-            _environment._turtleActive = true;
         }
 
         if (_environment._monkeyActive)
         {
+            _monkeyResidence._monkeyActive = true;
             _monkeyResidence.x = 0;
             _environment.x = 1920;
-            _environment._monkeyActive = true;
         }
 
         if (_environment._lionActive)
         {
+            _lionResidence._lionActive = true;
             _lionResidence.x = 0;
             _environment.x = 1920;
-            _environment._lionActive = true;
         }
 
         if (_environment._giraffeActive)
         {
+            _giraffeResidence._giraffeActive = true;
             _giraffeResidence.x = 0;
             _environment.x = 1920;
-            _environment._giraffeActive = true;
         }
 
         if (_environment._hippoActive)
         {
+            _hippoResidence._hippoActive = true;
             _hippoResidence.x = 0;
             _environment.x = 1920;
-            _environment._hippoActive = true;
         }
 
         //////////////////////////////////////
         ///
+
+        if (_gameHUD.clickedBack)
+        {
+            _environment._penguinsActive = false;
+            _environment._zebraActive = false;
+            _environment._seaLionActive = false;
+            _environment._turtleActive = false;
+            _environment._monkeyActive = false;
+            _environment._lionActive = false;
+            _environment._giraffeActive = false;
+            _environment._hippoActive = false;
+            _penguinResidence.x = 1920;
+            _zebraResidence.x = 1920;
+            _seaLionResidence.x = 1920;
+            _turtleResidence.x = 1920;
+            _monkeyResidence.x = 1920;
+            _lionResidence.x = 1920;
+            _giraffeResidence.x = 1920;
+            _hippoResidence.x = 1920;
+            _environment.x = 0;
+            _gameHUD.clickedBack = false;
+        }
     }
 }

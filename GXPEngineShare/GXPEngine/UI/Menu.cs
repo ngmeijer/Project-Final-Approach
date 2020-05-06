@@ -30,12 +30,10 @@ public class Menu : GameObject
 
     private void Update()
     {
-        ManageButtonVisibility();
         CheckStartInput();
     }
 
     #endregion
-
 
     private void CheckStartInput()
     {
@@ -45,13 +43,6 @@ public class Menu : GameObject
             {
                 levelStarted = true;
             }
-        }
-    }
-    private void ManageButtonVisibility()
-    {
-        if (levelStarted)
-        {
-            
         }
     }
 }

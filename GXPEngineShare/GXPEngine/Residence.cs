@@ -52,7 +52,7 @@ public class Residence : GameObject
         if (_seaLionActive)
         {
             _seaLion = new SeaLion();
-            AddChild(_penguin);
+            AddChild(_seaLion);
             _seaLion.x = game.width / 2;
             _seaLion.y = game.height / 2;
         }
