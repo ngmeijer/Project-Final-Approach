@@ -78,19 +78,21 @@ public class SceneManager : GameObject
     {
         if (_menu.levelStarted)
         {
-            if (_menu.x < 1920)
-            {
-                _gameHUD.visible = true;
-                _menu.x = 1920;
-                _environment.x = 0;
-            }
+            _menu.x = 1920;
+            _environment.x = 0;
         }
     }
 
     private void CheckResidenceActivity()
     {
+        if (residenceActive)
+        {
+            _gameHUD.visible = true;
+        }
+
         if (_environment._penguinsActive)
         {
+            residenceActive = true;
             _penguinResidence._penguinActive = true;
             _penguinResidence.x = 0;
             _environment.x = 1920;
@@ -98,6 +100,7 @@ public class SceneManager : GameObject
 
         if (_environment._zebraActive)
         {
+            residenceActive = true;
             _zebraResidence._zebraActive = true;
             _zebraResidence.x = 0;
             _environment.x = 1920;
@@ -105,6 +108,7 @@ public class SceneManager : GameObject
 
         if (_environment._seaLionActive)
         {
+            residenceActive = true;
             _seaLionResidence._seaLionActive = true;
             _seaLionResidence.x = 0;
             _environment.x = 1920;
@@ -112,6 +116,7 @@ public class SceneManager : GameObject
 
         if (_environment._turtleActive)
         {
+            residenceActive = true;
             _turtleResidence._turtleActive = true;
             _turtleResidence.x = 0;
             _environment.x = 1920;
@@ -119,6 +124,7 @@ public class SceneManager : GameObject
 
         if (_environment._monkeyActive)
         {
+            residenceActive = true;
             _monkeyResidence._monkeyActive = true;
             _monkeyResidence.x = 0;
             _environment.x = 1920;
@@ -126,6 +132,7 @@ public class SceneManager : GameObject
 
         if (_environment._lionActive)
         {
+            residenceActive = true;
             _lionResidence._lionActive = true;
             _lionResidence.x = 0;
             _environment.x = 1920;
@@ -133,6 +140,7 @@ public class SceneManager : GameObject
 
         if (_environment._giraffeActive)
         {
+            residenceActive = true;
             _giraffeResidence._giraffeActive = true;
             _giraffeResidence.x = 0;
             _environment.x = 1920;
@@ -140,6 +148,7 @@ public class SceneManager : GameObject
 
         if (_environment._hippoActive)
         {
+            residenceActive = true;
             _hippoResidence._hippoActive = true;
             _hippoResidence.x = 0;
             _environment.x = 1920;
@@ -158,6 +167,9 @@ public class SceneManager : GameObject
             _environment._lionActive = false;
             _environment._giraffeActive = false;
             _environment._hippoActive = false;
+
+            _gameHUD.clickedBack = false;
+            
             _penguinResidence.x = 1920;
             _zebraResidence.x = 1920;
             _seaLionResidence.x = 1920;
@@ -167,7 +179,92 @@ public class SceneManager : GameObject
             _giraffeResidence.x = 1920;
             _hippoResidence.x = 1920;
             _environment.x = 0;
-            _gameHUD.clickedBack = false;
+        }
+
+        if (_gameHUD.clickedLeft)
+        {
+            if (_environment._penguinsActive)
+            {
+
+            }
+
+            if (_environment._zebraActive)
+            {
+
+            }
+
+            if (_environment._seaLionActive)
+            {
+
+            }
+
+            if (_environment._turtleActive)
+            {
+
+            }
+
+            if (_environment._monkeyActive)
+            {
+
+            }
+
+            if (_environment._lionActive)
+            {
+
+            }
+
+            if (_environment._giraffeActive)
+            {
+
+            }
+
+            if (_environment._hippoActive)
+            {
+
+            }
+        }
+
+        if (_gameHUD.clickedRight)
+        {
+            if (_environment._penguinsActive)
+            {
+
+            }
+
+            if (_environment._zebraActive)
+            {
+
+            }
+
+            if (_environment._seaLionActive)
+            {
+
+            }
+
+            if (_environment._turtleActive)
+            {
+
+            }
+
+            if (_environment._monkeyActive)
+            {
+
+            }
+
+            if (_environment._lionActive)
+            {
+
+            }
+
+            if (_environment._giraffeActive)
+            {
+
+            }
+
+            if (_environment._hippoActive)
+            {
+
+            }
         }
     }
 }
