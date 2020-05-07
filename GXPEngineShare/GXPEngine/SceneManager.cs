@@ -118,6 +118,14 @@ public class SceneManager : GameObject
         if (_gameHUD.clickedBack)
         {
             _environment.visible = true;
+            _environment.clickedPenguin = false;
+            _environment.clickedZebra = false;
+            _environment.clickedSeaLion = false;
+            _environment.clickedTurtle = false;
+            _environment.clickedMonkey = false;
+            _environment.clickedLion = false;
+            _environment.clickedGiraffe = false;
+            _environment.clickedHippo = false;
 
             _residence._penguinActive = false;
             _residence._zebraActive = false;
@@ -128,12 +136,14 @@ public class SceneManager : GameObject
             _residence._giraffeActive = false;
             _residence._hippoActive = false;
 
+            _gameHUD.visible = false;
+
             _gameHUD.clickedBack = false;
 
             residenceActive = false;
         }
 
-        Console.WriteLine(currentAnimal);
+        //Console.WriteLine(currentAnimal);
 
         if (residenceActive)
         {
