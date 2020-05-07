@@ -12,14 +12,14 @@ public class Environment : GameObject
     public Giraffe _giraffe { get; private set; }
     public Hippo _hippo { get; private set; }
 
-    public bool _penguinsActive { get; set; }
-    public bool _zebraActive { get; set; }
-    public bool _seaLionActive { get; set; }
-    public bool _turtleActive { get; set; }
-    public bool _monkeyActive { get; set; }
-    public bool _lionActive { get; set; }
-    public bool _giraffeActive { get; set; }
-    public bool _hippoActive { get; set; }
+    public bool clickedPenguin { get; set; }
+    public bool clickedZebra { get; set; }
+    public bool clickedSeaLion { get; set; }
+    public bool clickedTurtle { get; set; }
+    public bool clickedMonkey { get; set; }
+    public bool clickedLion { get; set; }
+    public bool clickedGiraffe { get; set; }
+    public bool clickedHippo { get; set; }
 
 
     public Environment()
@@ -75,7 +75,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _penguinsActive = true;
+                clickedPenguin = true;
             }
         }
 
@@ -83,7 +83,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _zebraActive = true;
+                clickedZebra = true;
             }
         }
 
@@ -91,7 +91,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _seaLionActive = true;
+                clickedSeaLion = true;
             }
         }
 
@@ -99,7 +99,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _turtleActive = true;
+                clickedTurtle = true;
             }
         }
 
@@ -107,7 +107,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _monkeyActive = true;
+                clickedMonkey = true;
             }
         }
 
@@ -115,7 +115,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _lionActive = true;
+                clickedLion = true;
             }
         }
 
@@ -123,7 +123,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _giraffeActive = true;
+                clickedGiraffe = true;
             }
         }
 
@@ -131,7 +131,7 @@ public class Environment : GameObject
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _hippoActive = true;
+                clickedHippo = true;
             }
         }
     }
