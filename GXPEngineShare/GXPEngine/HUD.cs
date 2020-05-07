@@ -13,17 +13,20 @@ public class HUD : GameObject
     public Sprite _mileStonesButton;
     public Sprite _exitButton;
 
+    public Sprite _mileStonesExit;
+    public Sprite _mileStonesBackground;
+
     public bool clickedBack { get; set; }
     public bool clickedLeft { get; set; }
     public bool clickedRight { get; set; }
     public bool mainAreaActive { get; set; }
     public bool clickedOptions { get; set; }
 
-
-    public bool showHUD { get; set; }
+    private bool clickedMilestones = false;
 
     public HUD()
     {
+        //Residence HUD
         _rightButton = new Sprite("RightButton.png");
         AddChild(_rightButton);
         _rightButton.x = 1793;
@@ -38,7 +41,9 @@ public class HUD : GameObject
         AddChild(_lowerButton);
         _lowerButton.x = 560;
         _lowerButton.y = 966;
+        /////////////////
 
+        //Options menu
         _optionsButton = new Sprite("OptionsButton.png");
         AddChild(_optionsButton);
         _optionsButton.x = game.width - 100;
@@ -67,6 +72,21 @@ public class HUD : GameObject
         _exitButton.x = game.width / 2 - _exitButton.width / 2;
         _exitButton.y = game.height / 2 - _exitButton.height / 2 + 120;
         _exitButton.visible = false;
+        ///////////////
+
+        //Milestones menu
+        _mileStonesBackground = new Sprite("MileStonesBackground.png");
+        AddChild(_mileStonesBackground);
+        _mileStonesBackground.x = game.width / 2 - _mileStonesBackground.width / 2;
+        _mileStonesBackground.y = game.height / 2 - _mileStonesBackground.height / 2;
+        _mileStonesBackground.visible = false;
+
+        _mileStonesExit = new Sprite("ExitButton.png");
+        AddChild(_mileStonesExit);
+        _mileStonesExit.x = game.width / 2 - _mileStonesExit.width / 2;
+        _mileStonesExit.y = game.height / 2 - _mileStonesExit.height / 2 + 240;
+        _mileStonesExit.visible = false;
+        //
     }
 
     private void Update()
@@ -133,6 +153,45 @@ public class HUD : GameObject
             _continueButton.visible = false;
             _mileStonesButton.visible = false;
             _exitButton.visible = false;
+
+            clickedMilestones = false;
+        }
+
+        if (_continueButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            clickedOptions = false;
+        }
+
+        if (_mileStonesButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            clickedMilestones = true;
+        }
+
+        if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            MyGame.main.Destroy();
+        }
+
+        ShowMilestones();
+    }
+
+    private void ShowMilestones()
+    {
+        if (clickedMilestones)
+        {
+            _mileStonesBackground.visible = true;
+            _mileStonesExit.visible = true;
+        }
+        else if (!clickedMilestones)
+        {
+            _mileStonesBackground.visible = false;
+            _mileStonesExit.visible = false;
+        }
+
+        if (_mileStonesExit.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            clickedMilestones = false;
+            clickedOptions = true;
         }
     }
 }
