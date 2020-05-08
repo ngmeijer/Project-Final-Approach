@@ -3,13 +3,13 @@ using GXPEngine;
 
 public class MyGame : Game
 {
-	private SceneManager _sceneManager;
+	private GameManager _sceneManager;
 
 	private Menu _menu;
 
 	public MyGame() : base(1920, 1080, false)
 	{
-		_sceneManager = new SceneManager();
+		_sceneManager = new GameManager();
 		AddChild(_sceneManager);
 	}
 

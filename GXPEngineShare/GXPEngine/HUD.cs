@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Drawing;
 using GXPEngine;
+using TiledMapParser;
 
-public class HUD : GameObject
+public class HUD : Canvas
 {
     public Sprite _rightButton;
     public Sprite _leftButton;
     public Sprite _lowerButton;
+    public Sprite _interactionMenuButton;
+    public Sprite _cleanIcon;
+    public Sprite _feedIcon;
+    public Sprite _petIcon;
 
     public Sprite _optionsButton;
     public Sprite _optionsBackground;
@@ -23,12 +29,21 @@ public class HUD : GameObject
     public bool clickedOptions { get; set; }
 
     private bool clickedMilestones = false;
+    public bool petting { get; set; }
+    public bool cleaning { get; set; }
+    public bool feeding { get; set; }
+
+    public int currentXpAmount = 0;
+    public bool showInteractionMenu { get; set; }
 
     public bool environmentActive { get; set; }
 
     public bool residenceActive { get; set; }
 
-    public HUD()
+    private readonly Brush _fontColor;
+    private readonly Font _font;
+
+    public HUD() : base(1920, 1080, false)
     {
         //Residence HUD
         _rightButton = new Sprite("RightButton.png");
@@ -45,6 +60,24 @@ public class HUD : GameObject
         AddChild(_lowerButton);
         _lowerButton.x = 560;
         _lowerButton.y = 966;
+
+        _interactionMenuButton = new Sprite("InteractionMenuButton.png");
+        AddChild(_interactionMenuButton);
+        _interactionMenuButton.x = game.width - 100;
+        _interactionMenuButton.y = 20;
+
+        _cleanIcon = new Sprite("CleanIcon.png");
+        AddChild(_cleanIcon);
+        _cleanIcon.x = game.width - 150;
+        _cleanIcon.y = 80;
+        _cleanIcon.visible = false;
+
+        _feedIcon = new Sprite("FeedIcon.png");
+        AddChild(_feedIcon);
+        _feedIcon.x = game.width - 150;
+        _feedIcon.y = 180;
+        _feedIcon.visible = false;
+
         /////////////////
 
         //Options menu
@@ -92,12 +125,18 @@ public class HUD : GameObject
         _mileStonesExit.visible = false;
         SetChildIndex(_mileStonesExit, 100);
         //
+
+        _fontColor = Brushes.White;
+        _font = new Font("Arial", 20);
     }
 
     private void Update()
     {
+        graphics.Clear(Color.Empty);
         CheckForAnimalSwitching();
         CheckForOptionsRequest();
+        ShowInteractionMenu();
+        InteractWithAnimal();
     }
 
     private void CheckForAnimalSwitching()
@@ -107,6 +146,9 @@ public class HUD : GameObject
             _lowerButton.visible = true;
             _rightButton.visible = true;
             _leftButton.visible = true;
+
+            _interactionMenuButton.visible = true;
+
             if (_lowerButton.HitTestPoint(Input.mouseX, Input.mouseY))
             {
                 if (Input.GetMouseButtonDown(0))
@@ -138,6 +180,8 @@ public class HUD : GameObject
             _lowerButton.visible = false;
             _rightButton.visible = false;
             _leftButton.visible = false;
+
+            _interactionMenuButton.visible = false;
         }
     }
 
@@ -177,6 +221,11 @@ public class HUD : GameObject
                 clickedMilestones = true;
             }
 
+            if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+            {
+                MyGame.main.Destroy();
+            }
+
             if (clickedMilestones)
             {
                 ShowMilestones();
@@ -202,15 +251,61 @@ public class HUD : GameObject
 
     private void ShowMilestones()
     {
-        //Console.WriteLine("still running");
+        graphics.DrawString("Level = ", _font, _fontColor, 700, 500);
 
         _mileStonesBackground.visible = true;
         _mileStonesExit.visible = true;
+
 
         if (_mileStonesExit.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
         {
             clickedMilestones = false;
             clickedOptions = true;
         }
+    }
+
+    private void ShowInteractionMenu()
+    {
+        if (residenceActive)
+        {
+            if (showInteractionMenu)
+            {
+                _cleanIcon.visible = true;
+                _feedIcon.visible = true;
+            }
+            else if (!showInteractionMenu)
+            {
+                _cleanIcon.visible = false;
+                _feedIcon.visible = false;
+            }
+
+            if (_interactionMenuButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0) && !showInteractionMenu)
+            {
+                showInteractionMenu = true;
+            }
+
+            if (!_interactionMenuButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0) && showInteractionMenu)
+            {
+                showInteractionMenu = false;
+            }
+        }
+    }
+
+    private void InteractWithAnimal()
+    {
+        if (_cleanIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            cleaning = true;
+        }
+
+        if (_feedIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            feeding = true;
+        }
+
+        //if (_petIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        //{
+        //    petting = true;
+        //}
     }
 }

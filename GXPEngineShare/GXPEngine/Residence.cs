@@ -203,9 +203,4 @@ public class Residence : GameObject
             _hippo.visible = false;
         }
     }
-
-    private void InteractWithAnimal()
-    {
-
-    }
 }

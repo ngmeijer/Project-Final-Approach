@@ -1,11 +1,13 @@
 ﻿using System;
 using GXPEngine;
 
-public class SceneManager : GameObject
+public class GameManager : GameObject
 {
     public Menu _menu { get; private set; }
 
     public HUD _gameHUD { get; private set; }
+
+    public ScoreTracker _scoreTracker { get; private set; }
 
     public Environment _environment { get; private set; }
 
@@ -17,7 +19,7 @@ public class SceneManager : GameObject
     private int currentAnimal;
     private int lastAnimal = 7;
 
-    public SceneManager()
+    public GameManager()
     {
         _menu = new Menu();
         AddChild(_menu);
@@ -35,6 +37,9 @@ public class SceneManager : GameObject
         _gameHUD = new HUD();
         AddChild(_gameHUD);
         SetChildIndex(_gameHUD, 1000);
+
+        _scoreTracker = new ScoreTracker();
+        AddChild(_scoreTracker);
     }
 
     private void Update()
@@ -42,6 +47,7 @@ public class SceneManager : GameObject
         CheckLevelStart();
         CheckResidenceActivity();
         SwitchAnimals();
+        SendXpData();
     }
 
     private void CheckLevelStart()
@@ -140,8 +146,7 @@ public class SceneManager : GameObject
             }
         }
 
-        //////////////////////////////////////
-        ///
+        /////////////
 
         if (_gameHUD.clickedBack)
         {
@@ -173,6 +178,7 @@ public class SceneManager : GameObject
         {
             if (_gameHUD.clickedLeft)
             {
+                _gameHUD.showInteractionMenu = false;
                 currentAnimal--;
                 if (currentAnimal <= -1)
                 {
@@ -183,6 +189,7 @@ public class SceneManager : GameObject
 
             if (_gameHUD.clickedRight)
             {
+                _gameHUD.showInteractionMenu = false;
                 currentAnimal++;
                 if (currentAnimal > lastAnimal)
                 {
@@ -191,7 +198,6 @@ public class SceneManager : GameObject
                 _gameHUD.clickedRight = false;
             }
         }
-
     }
 
     private void SwitchAnimals()
@@ -290,6 +296,27 @@ public class SceneManager : GameObject
                     break;
             }
         }
+    }
 
+    private void SendXpData()
+    {
+        Console.WriteLine(_scoreTracker._penguinXp);
+        if (_residence._penguinActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._penguinXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._penguinActive && _gameHUD.feeding)
+        {
+            _scoreTracker._penguinXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._penguinActive && _gameHUD.petting)
+        {
+            _scoreTracker._penguinXp += 5;
+            _gameHUD.petting = false;
+        }
     }
 }
