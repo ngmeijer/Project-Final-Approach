@@ -86,6 +86,7 @@
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
     <Compile Include="Residence.cs" />
     <Compile Include="SceneManager.cs" />
+    <Compile Include="ScoreTracker.cs" />
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\BackButton.cs" />
     <Compile Include="UI\StartButton.cs" />

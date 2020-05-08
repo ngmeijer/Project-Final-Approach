@@ -23,7 +23,6 @@ public class Residence : GameObject
     public bool _lionActive;
     public bool _giraffeActive;
     public bool _hippoActive;
-    private bool anotherAnimalActive;
 
     public Residence() : base()
     {
@@ -109,10 +108,10 @@ public class Residence : GameObject
 
     private void Update()
     {
-        CheckAnimals();
+        CheckAnimalActive();
     }
 
-    private void CheckAnimals()
+    private void CheckAnimalActive()
     {
         if (_penguinActive)
         {
@@ -189,5 +188,10 @@ public class Residence : GameObject
         {
             _hippo.visible = false;
         }
+    }
+
+    private void InteractWithAnimal()
+    {
+
     }
 }
