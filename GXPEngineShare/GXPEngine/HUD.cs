@@ -146,6 +146,26 @@ public class HUD : GameObject
         {
             _optionsButton.visible = true;
 
+            if (_optionsButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+            {
+                clickedOptions = true;
+            }
+
+            if (clickedOptions)
+            {
+                _optionsBackground.visible = true;
+                _continueButton.visible = true;
+                _mileStonesButton.visible = true;
+                _exitButton.visible = true;
+            }
+            else if (!clickedOptions)
+            {
+                _optionsBackground.visible = false;
+                _continueButton.visible = false;
+                _mileStonesButton.visible = false;
+                _exitButton.visible = false;
+            }
+
             if (_continueButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
             {
                 clickedOptions = false;

@@ -34,9 +34,7 @@ public class SceneManager : GameObject
 
         _gameHUD = new HUD();
         AddChild(_gameHUD);
-        SetChildIndex(_gameHUD, 0);
-
-        Console.WriteLine("current animal = " + currentAnimal);
+        SetChildIndex(_gameHUD, 1000);
     }
 
     private void Update()
@@ -82,60 +80,65 @@ public class SceneManager : GameObject
             _gameHUD.environmentActive = false;
         }
 
-        if (_environment.clickedPenguin)
+        if (!_gameHUD.clickedOptions)
         {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._penguinActive = true;
-        }
+            _environment.canClickOnResidence = true;
 
-        if (_environment.clickedZebra)
-        {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._zebraActive = true;
-        }
+            if (_environment.clickedPenguin)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._penguinActive = true;
+            }
 
-        if (_environment.clickedSeaLion)
-        {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._seaLionActive = true;
-        }
+            if (_environment.clickedZebra)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._zebraActive = true;
+            }
 
-        if (_environment.clickedTurtle)
-        {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._turtleActive = true;
-        }
+            if (_environment.clickedSeaLion)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._seaLionActive = true;
+            }
 
-        if (_environment.clickedMonkey)
-        {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._monkeyActive = true;
-        }
+            if (_environment.clickedTurtle)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._turtleActive = true;
+            }
 
-        if (_environment.clickedLion)
-        {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._lionActive = true;
-        }
+            if (_environment.clickedMonkey)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._monkeyActive = true;
+            }
 
-        if (_environment.clickedGiraffe)
-        {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._giraffeActive = true;
-        }
+            if (_environment.clickedLion)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._lionActive = true;
+            }
 
-        if (_environment.clickedHippo)
-        {
-            environmentActive = false;
-            residenceActive = true;
-            _residence._hippoActive = true;
+            if (_environment.clickedGiraffe)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._giraffeActive = true;
+            }
+
+            if (_environment.clickedHippo)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._hippoActive = true;
+            }
         }
 
         //////////////////////////////////////

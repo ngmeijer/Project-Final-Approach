@@ -3,6 +3,8 @@ using GXPEngine;
 
 public class Environment : GameObject
 {
+    public bool canClickOnResidence { get; set; }
+
     public Penguin _penguin { get; private set; }
     public Zebra _zebra { get; private set; }
     public SeaLion _seaLion { get; private set; }
@@ -26,35 +28,35 @@ public class Environment : GameObject
     {
         _penguin = new Penguin();
         AddChild(_penguin);
-        _penguin.SetXY(100, 950);
+        _penguin.SetXY(200, 800);
 
         _zebra = new Zebra();
         AddChild(_zebra);
-        _zebra.SetXY(200, 700);
+        _zebra.SetXY(200, 600);
 
         _seaLion = new SeaLion();
         AddChild(_seaLion);
-        _seaLion.SetXY(350, 500);
+        _seaLion.SetXY(200, 400);
 
         _turtle = new Turtle();
         AddChild(_turtle);
-        _turtle.SetXY(500, 200);
+        _turtle.SetXY(200, 200);
 
         _monkey = new Monkey();
         AddChild(_monkey);
-        _monkey.SetXY(750, 200);
+        _monkey.SetXY(1400, 200);
 
         _lion = new Lion();
         AddChild(_lion);
-        _lion.SetXY(900, 500);
+        _lion.SetXY(1400, 400);
 
         _giraffe = new Giraffe();
         AddChild(_giraffe);
-        _giraffe.SetXY(1200, 650);
+        _giraffe.SetXY(1400, 600);
 
         _hippo = new Hippo();
         AddChild(_hippo);
-        _hippo.SetXY(1500, 950);
+        _hippo.SetXY(1400, 800);
     }
 
     private void Update()
@@ -71,67 +73,70 @@ public class Environment : GameObject
 
     private void ClickResidence()
     {
-        if (_penguin.HitTestPoint(Input.mouseX, Input.mouseY))
+        if (canClickOnResidence)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (_penguin.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedPenguin = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedPenguin = true;
+                }
             }
-        }
 
-        if (_zebra.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (_zebra.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedZebra = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedZebra = true;
+                }
             }
-        }
 
-        if (_seaLion.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (_seaLion.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedSeaLion = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedSeaLion = true;
+                }
             }
-        }
 
-        if (_turtle.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (_turtle.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedTurtle = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedTurtle = true;
+                }
             }
-        }
 
-        if (_monkey.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (_monkey.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedMonkey = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedMonkey = true;
+                }
             }
-        }
 
-        if (_lion.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (_lion.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedLion = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedLion = true;
+                }
             }
-        }
 
-        if (_giraffe.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (_giraffe.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedGiraffe = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedGiraffe = true;
+                }
             }
-        }
 
-        if (_hippo.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            if (_hippo.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedHippo = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedHippo = true;
+                }
             }
         }
     }
