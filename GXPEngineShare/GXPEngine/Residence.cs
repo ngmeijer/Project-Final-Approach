@@ -13,6 +13,8 @@ public class Residence : GameObject
     private Hippo _hippo;
 
     public Sprite _penguinBackground { get; set; }
+    public Sprite _seaLionBackground { get; set; }
+    public Sprite _turtleBackground { get; set; }
     public Sprite _giraffeBackground { get; set; }
 
     public bool _penguinActive = false;
@@ -27,7 +29,7 @@ public class Residence : GameObject
     public Residence() : base()
     {
         //Penguin residence
-        _penguinBackground = new Sprite("TurtleBackground.png");
+        _penguinBackground = new Sprite("PenguinBackground.png");
         AddChild(_penguinBackground);
         _penguinBackground.visible = false;
 
@@ -49,6 +51,10 @@ public class Residence : GameObject
         //
 
         //Sea lion residence
+        _seaLionBackground = new Sprite("SeaLionBackground.png");
+        AddChild(_seaLionBackground);
+        _seaLionBackground.visible = false;
+
         _seaLion = new SeaLion();
         AddChild(_seaLion);
         _seaLion.x = game.width / 2;
@@ -58,6 +64,10 @@ public class Residence : GameObject
         //
 
         //Turtle residence
+        _turtleBackground = new Sprite("TurtleBackground.png");
+        AddChild(_turtleBackground);
+        _turtleBackground.visible = false;
+
         _turtle = new Turtle();
         AddChild(_turtle);
         _turtle.x = game.width / 2;
@@ -135,19 +145,23 @@ public class Residence : GameObject
 
         if (_seaLionActive)
         {
+            _seaLionBackground.visible = true;
             _seaLion.visible = true;
         }
         else
         {
+            _seaLionBackground.visible = false;
             _seaLion.visible = false;
         }
 
         if (_turtleActive)
         {
+            _turtleBackground.visible = true;
             _turtle.visible = true;
         }
         else
         {
+            _turtleBackground.visible = false;
             _turtle.visible = false;
         }
 

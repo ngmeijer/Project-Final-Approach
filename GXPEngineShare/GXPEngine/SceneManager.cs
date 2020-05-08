@@ -76,7 +76,6 @@ public class SceneManager : GameObject
         }
         else if (!environmentActive)
         {
-            Console.WriteLine("dont show options");
             _gameHUD.environmentActive = false;
         }
 

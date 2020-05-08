@@ -85,11 +85,12 @@ public class HUD : GameObject
         _mileStonesBackground.y = game.height / 2 - _mileStonesBackground.height / 2;
         _mileStonesBackground.visible = false;
 
-        _mileStonesExit = new Sprite("ExitButton.png");
+        _mileStonesExit = new Sprite("MilestoneExit.png");
         AddChild(_mileStonesExit);
         _mileStonesExit.x = game.width / 2 - _mileStonesExit.width / 2;
-        _mileStonesExit.y = game.height / 2 - _mileStonesExit.height / 2 + 240;
+        _mileStonesExit.y = game.height / 2 - _mileStonesExit.height / 2 + 200;
         _mileStonesExit.visible = false;
+        SetChildIndex(_mileStonesExit, 100);
         //
     }
 
@@ -176,9 +177,20 @@ public class HUD : GameObject
                 clickedMilestones = true;
             }
 
-            if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+            if (clickedMilestones)
             {
-                MyGame.main.Destroy();
+                ShowMilestones();
+            }
+
+            if (!clickedMilestones && clickedOptions)
+            {
+                _mileStonesBackground.visible = false;
+                _mileStonesExit.visible = false;
+
+                _optionsBackground.visible = true;
+                _continueButton.visible = true;
+                _mileStonesButton.visible = true;
+                _exitButton.visible = true;
             }
         }
 
@@ -190,6 +202,15 @@ public class HUD : GameObject
 
     private void ShowMilestones()
     {
+        //Console.WriteLine("still running");
 
+        _mileStonesBackground.visible = true;
+        _mileStonesExit.visible = true;
+
+        if (_mileStonesExit.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            clickedMilestones = false;
+            clickedOptions = true;
+        }
     }
 }
