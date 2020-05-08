@@ -6,7 +6,7 @@ public class ScoreTracker : GameObject
     private float _multiplier = 1.15f;
     //
 
-    private int _penguinLevel = 0;
+    public int _penguinLevel { get; set; } = 0;
     public int _penguinXp { get; set; } = 0;
     private float maxXpAmount = 150;
 

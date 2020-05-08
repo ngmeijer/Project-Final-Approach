@@ -22,6 +22,9 @@ public class HUD : Canvas
     public Sprite _mileStonesExit;
     public Sprite _mileStonesBackground;
 
+    public int _penguinLevel;
+    public int _penguinCurrentXp;
+
     public bool clickedBack { get; set; }
     public bool clickedLeft { get; set; }
     public bool clickedRight { get; set; }
@@ -34,6 +37,8 @@ public class HUD : Canvas
     public bool feeding { get; set; }
 
     public int currentXpAmount = 0;
+    public bool showPenguinStats { get; set; }
+
     public bool showInteractionMenu { get; set; }
 
     public bool environmentActive { get; set; }
@@ -137,6 +142,7 @@ public class HUD : Canvas
         CheckForOptionsRequest();
         ShowInteractionMenu();
         InteractWithAnimal();
+        ShowCurrentXpAndLevel();
     }
 
     private void CheckForAnimalSwitching()
@@ -307,5 +313,10 @@ public class HUD : Canvas
         //{
         //    petting = true;
         //}
+    }
+
+    private void ShowCurrentXpAndLevel()
+    {
+
     }
 }

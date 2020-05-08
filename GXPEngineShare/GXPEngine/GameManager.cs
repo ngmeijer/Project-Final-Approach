@@ -47,7 +47,8 @@ public class GameManager : GameObject
         CheckLevelStart();
         CheckResidenceActivity();
         SwitchAnimals();
-        SendXpData();
+        SendXpDataToTracker();
+        SendXpDataToHUD();
     }
 
     private void CheckLevelStart()
@@ -298,7 +299,7 @@ public class GameManager : GameObject
         }
     }
 
-    private void SendXpData()
+    private void SendXpDataToTracker()
     {
         Console.WriteLine(_scoreTracker._penguinXp);
         if (_residence._penguinActive && _gameHUD.cleaning)
@@ -318,5 +319,14 @@ public class GameManager : GameObject
             _scoreTracker._penguinXp += 5;
             _gameHUD.petting = false;
         }
+    }
+
+    private void SendXpDataToHUD()
+    {
+        //Penguin
+        _gameHUD.showPenguinStats = true;
+        _gameHUD._penguinLevel = _scoreTracker._penguinLevel;
+        _gameHUD._penguinCurrentXp = _scoreTracker._penguinXp;
+        //
     }
 }
