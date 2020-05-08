@@ -12,6 +12,7 @@ public class SceneManager : GameObject
     public Residence _residence;
 
     public bool residenceActive;
+    public bool environmentActive;
 
     private int currentAnimal;
     private int lastAnimal = 7;
@@ -33,7 +34,6 @@ public class SceneManager : GameObject
 
         _gameHUD = new HUD();
         AddChild(_gameHUD);
-        _gameHUD.visible = false;
         SetChildIndex(_gameHUD, 0);
 
         Console.WriteLine("current animal = " + currentAnimal);
@@ -48,66 +48,92 @@ public class SceneManager : GameObject
 
     private void CheckLevelStart()
     {
-        if (_menu.levelStarted)
+        if (_menu.levelStarted && !residenceActive)
         {
             _menu.x = 1920;
             _environment.x = 0;
+            environmentActive = true;
         }
     }
 
     private void CheckResidenceActivity()
     {
+        ////////////
         if (residenceActive)
         {
             _environment.visible = false;
-            _gameHUD.visible = true;
+            _gameHUD.residenceActive = true;
             SetChildIndex(_gameHUD, 1000);
+        }
+
+        if (!residenceActive)
+        {
+            _gameHUD.residenceActive = false;
+        }
+        /////////////
+
+        if (environmentActive)
+        {
+            _gameHUD.environmentActive = true;
+        }
+        else if (!environmentActive)
+        {
+            Console.WriteLine("dont show options");
+            _gameHUD.environmentActive = false;
         }
 
         if (_environment.clickedPenguin)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._penguinActive = true;
         }
 
         if (_environment.clickedZebra)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._zebraActive = true;
         }
 
         if (_environment.clickedSeaLion)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._seaLionActive = true;
         }
 
         if (_environment.clickedTurtle)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._turtleActive = true;
         }
 
         if (_environment.clickedMonkey)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._monkeyActive = true;
         }
 
         if (_environment.clickedLion)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._lionActive = true;
         }
 
         if (_environment.clickedGiraffe)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._giraffeActive = true;
         }
 
         if (_environment.clickedHippo)
         {
+            environmentActive = false;
             residenceActive = true;
             _residence._hippoActive = true;
         }
@@ -136,14 +162,10 @@ public class SceneManager : GameObject
             _residence._giraffeActive = false;
             _residence._hippoActive = false;
 
-            _gameHUD.visible = false;
-
             _gameHUD.clickedBack = false;
 
             residenceActive = false;
         }
-
-        //Console.WriteLine(currentAnimal);
 
         if (residenceActive)
         {

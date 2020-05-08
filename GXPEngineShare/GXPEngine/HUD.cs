@@ -24,6 +24,10 @@ public class HUD : GameObject
 
     private bool clickedMilestones = false;
 
+    public bool environmentActive { get; set; }
+
+    public bool residenceActive { get; set; }
+
     public HUD()
     {
         //Residence HUD
@@ -97,101 +101,75 @@ public class HUD : GameObject
 
     private void CheckForAnimalSwitching()
     {
-        if (_lowerButton.HitTestPoint(Input.mouseX, Input.mouseY))
+        if (residenceActive)
         {
-            if (Input.GetMouseButtonDown(0))
+            _lowerButton.visible = true;
+            _rightButton.visible = true;
+            _leftButton.visible = true;
+            if (_lowerButton.HitTestPoint(Input.mouseX, Input.mouseY))
             {
-                clickedBack = true;
-                mainAreaActive = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedBack = true;
+                    mainAreaActive = true;
+                }
+            }
+
+            if (_leftButton.HitTestPoint(Input.mouseX, Input.mouseY))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedLeft = true;
+                }
+            }
+
+            if (_rightButton.HitTestPoint(Input.mouseX, Input.mouseY))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    clickedRight = true;
+                }
             }
         }
 
-        if (_leftButton.HitTestPoint(Input.mouseX, Input.mouseY))
+        if (!residenceActive)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                clickedLeft = true;
-            }
-        }
-
-        if (_rightButton.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                clickedRight = true;
-            }
+            _lowerButton.visible = false;
+            _rightButton.visible = false;
+            _leftButton.visible = false;
         }
     }
 
     public void CheckForOptionsRequest()
     {
-        if (_optionsButton.HitTestPoint(Input.mouseX, Input.mouseY) && !clickedOptions)
+        if (environmentActive)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                clickedOptions = true;
-            }
-        }
-        else if (clickedOptions && !_optionsBackground.HitTestPoint(Input.mouseX, Input.mouseY))
-        {
-            if (Input.GetMouseButtonDown(0))
+            _optionsButton.visible = true;
+
+            if (_continueButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
             {
                 clickedOptions = false;
             }
+
+            if (_mileStonesButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+            {
+                clickedMilestones = true;
+            }
+
+            if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+            {
+                MyGame.main.Destroy();
+            }
         }
 
-        if (clickedOptions)
+        if (!environmentActive)
         {
-            _optionsBackground.visible = true;
-            _continueButton.visible = true;
-            _mileStonesButton.visible = true;
-            _exitButton.visible = true;
+            _optionsButton.visible = false;
         }
-        else if (!clickedOptions)
-        {
-            _optionsBackground.visible = false;
-            _continueButton.visible = false;
-            _mileStonesButton.visible = false;
-            _exitButton.visible = false;
-
-            clickedMilestones = false;
-        }
-
-        if (_continueButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
-        {
-            clickedOptions = false;
-        }
-
-        if (_mileStonesButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
-        {
-            clickedMilestones = true;
-        }
-
-        if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
-        {
-            MyGame.main.Destroy();
-        }
-
-        ShowMilestones();
     }
 
     private void ShowMilestones()
     {
-        if (clickedMilestones)
-        {
-            _mileStonesBackground.visible = true;
-            _mileStonesExit.visible = true;
-        }
-        else if (!clickedMilestones)
-        {
-            _mileStonesBackground.visible = false;
-            _mileStonesExit.visible = false;
-        }
 
-        if (_mileStonesExit.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
-        {
-            clickedMilestones = false;
-            clickedOptions = true;
-        }
     }
 }
