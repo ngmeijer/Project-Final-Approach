@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Drawing;
 using GXPEngine;
 
-public class ScoreTracker : GameObject
+public class ScoreTracker : Canvas
 {
     private float _multiplier = 1.15f;
     //
@@ -31,9 +32,13 @@ public class ScoreTracker : GameObject
     private int _hippoLevel = 0;
     private int _hippoXp = 0;
 
-    public ScoreTracker()
-    {
+    private readonly Brush _fontColor;
+    private readonly Font _font;
 
+    public ScoreTracker() : base(1920, 1080, false)
+    {
+        _fontColor = Brushes.White;
+        _font = new Font("Arial", 20);
     }
 
     private void Update()
@@ -52,5 +57,7 @@ public class ScoreTracker : GameObject
         ///
         ///
         ///
+
+        graphics.DrawString("Score = ", _font, _fontColor, 700, 500);
     }
 }

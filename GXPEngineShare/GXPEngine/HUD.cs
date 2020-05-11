@@ -45,9 +45,6 @@ public class HUD : Canvas
 
     public bool residenceActive { get; set; }
 
-    private readonly Brush _fontColor;
-    private readonly Font _font;
-
     public HUD() : base(1920, 1080, false)
     {
         //Residence HUD
@@ -103,36 +100,12 @@ public class HUD : Canvas
         _continueButton.y = game.height / 2 - _continueButton.height / 2 - 120;
         _continueButton.visible = false;
 
-        _mileStonesButton = new Sprite("MileStonesButton.png");
-        AddChild(_mileStonesButton);
-        _mileStonesButton.x = game.width / 2 - _mileStonesButton.width / 2;
-        _mileStonesButton.y = game.height / 2 - _mileStonesButton.height / 2;
-        _mileStonesButton.visible = false;
-
         _exitButton = new Sprite("ExitButton.png");
         AddChild(_exitButton);
         _exitButton.x = game.width / 2 - _exitButton.width / 2;
         _exitButton.y = game.height / 2 - _exitButton.height / 2 + 120;
         _exitButton.visible = false;
         ///////////////
-
-        //Milestones menu
-        _mileStonesBackground = new Sprite("MileStonesBackground.png");
-        AddChild(_mileStonesBackground);
-        _mileStonesBackground.x = game.width / 2 - _mileStonesBackground.width / 2;
-        _mileStonesBackground.y = game.height / 2 - _mileStonesBackground.height / 2;
-        _mileStonesBackground.visible = false;
-
-        _mileStonesExit = new Sprite("MilestoneExit.png");
-        AddChild(_mileStonesExit);
-        _mileStonesExit.x = game.width / 2 - _mileStonesExit.width / 2;
-        _mileStonesExit.y = game.height / 2 - _mileStonesExit.height / 2 + 200;
-        _mileStonesExit.visible = false;
-        SetChildIndex(_mileStonesExit, 100);
-        //
-
-        _fontColor = Brushes.White;
-        _font = new Font("Arial", 20);
     }
 
     private void Update()
@@ -206,14 +179,12 @@ public class HUD : Canvas
             {
                 _optionsBackground.visible = true;
                 _continueButton.visible = true;
-                _mileStonesButton.visible = true;
                 _exitButton.visible = true;
             }
             else if (!clickedOptions)
             {
                 _optionsBackground.visible = false;
                 _continueButton.visible = false;
-                _mileStonesButton.visible = false;
                 _exitButton.visible = false;
             }
 
@@ -222,51 +193,15 @@ public class HUD : Canvas
                 clickedOptions = false;
             }
 
-            if (_mileStonesButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
-            {
-                clickedMilestones = true;
-            }
-
             if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
             {
                 MyGame.main.Destroy();
-            }
-
-            if (clickedMilestones)
-            {
-                ShowMilestones();
-            }
-
-            if (!clickedMilestones && clickedOptions)
-            {
-                _mileStonesBackground.visible = false;
-                _mileStonesExit.visible = false;
-
-                _optionsBackground.visible = true;
-                _continueButton.visible = true;
-                _mileStonesButton.visible = true;
-                _exitButton.visible = true;
             }
         }
 
         if (!environmentActive)
         {
             _optionsButton.visible = false;
-        }
-    }
-
-    private void ShowMilestones()
-    {
-        graphics.DrawString("Level = ", _font, _fontColor, 700, 500);
-
-        _mileStonesBackground.visible = true;
-        _mileStonesExit.visible = true;
-
-
-        if (_mileStonesExit.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
-        {
-            clickedMilestones = false;
-            clickedOptions = true;
         }
     }
 
