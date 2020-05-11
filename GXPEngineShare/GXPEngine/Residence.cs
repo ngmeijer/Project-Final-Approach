@@ -16,6 +16,8 @@ public class Residence : GameObject
     public Sprite _seaLionBackground { get; set; }
     public Sprite _turtleBackground { get; set; }
     public Sprite _giraffeBackground { get; set; }
+    public Sprite _lionBackground { get; set; }
+    public Sprite _hippoBackground { get; set; }
 
     //Checks if the animal is CURRENTLY active
     public bool _penguinActive { get; set; }
@@ -32,8 +34,8 @@ public class Residence : GameObject
     public bool unlockedTurtle { get; set; }
     public bool unlockedSeaLion { get; set; }
     public bool unlockedZebra { get; set; }
-    public bool unlockedMonkey { get; set; }
-    public bool unlockedLion { get; set; }
+    public bool unlockedMonkey { get; set; } = true;
+    public bool unlockedLion { get; set; } = true;
     public bool unlockedGiraffe { get; set; }
     public bool unlockedHippo { get; set; }
 
@@ -97,6 +99,10 @@ public class Residence : GameObject
         //
 
         //Lion residence
+        _lionBackground = new Sprite("LionBackground.png");
+        AddChild(_lionBackground);
+        _lionBackground.visible = false;
+
         _lion = new Lion();
         AddChild(_lion);
         _lion.x = game.width / 2;
@@ -118,12 +124,16 @@ public class Residence : GameObject
         _giraffe.visible = false;
 
         //Hippo residence
+        _hippoBackground = new Sprite("HippoBackground.png");
+        AddChild(_hippoBackground);
+        _hippoBackground.visible = false;
+
         _hippo = new Hippo();
         AddChild(_hippo);
         _hippo.x = game.width / 2;
         _hippo.y = 800;
         _hippoActive = false;
-        _giraffe.visible = false;
+        _hippo.visible = false;
         //
     }
 
@@ -193,10 +203,12 @@ public class Residence : GameObject
         if (_lionActive)
         {
             _lion.visible = true;
+            _lionBackground.visible = true;
             unlockedLion = true;
         }
         else
         {
+            _lionBackground.visible = false;
             _lion.visible = false;
         }
 
@@ -214,11 +226,13 @@ public class Residence : GameObject
 
         if (_hippoActive)
         {
+            _hippoBackground.visible = true;
             _hippo.visible = true;
             unlockedHippo = true;
         }
         else
         {
+            _hippoBackground.visible = false;
             _hippo.visible = false;
         }
     }

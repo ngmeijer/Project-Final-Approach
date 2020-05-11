@@ -28,7 +28,6 @@ public class HUD : Canvas
     public bool mainAreaActive { get; set; }
     public bool clickedOptions { get; set; }
 
-    private bool clickedMilestones = false;
     public bool petting { get; set; }
     public bool cleaning { get; set; }
     public bool feeding { get; set; }
@@ -77,6 +76,11 @@ public class HUD : Canvas
         _feedIcon.y = 180;
         _feedIcon.visible = false;
 
+        _petIcon = new Sprite("PetIcon.png");
+        AddChild(_petIcon);
+        _petIcon.x = game.width - 150;
+        _petIcon.y = 280;
+        _petIcon.visible = false;
         /////////////////
 
         //Options menu
@@ -210,11 +214,13 @@ public class HUD : Canvas
             {
                 _cleanIcon.visible = true;
                 _feedIcon.visible = true;
+                _petIcon.visible = true;
             }
             else if (!showInteractionMenu)
             {
                 _cleanIcon.visible = false;
                 _feedIcon.visible = false;
+                _petIcon.visible = false;
             }
 
             if (_interactionMenuButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0) && !showInteractionMenu)
@@ -241,9 +247,9 @@ public class HUD : Canvas
             feeding = true;
         }
 
-        //if (_petIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
-        //{
-        //    petting = true;
-        //}
+        if (_petIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            petting = true;
+        }
     }
 }

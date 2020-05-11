@@ -331,9 +331,44 @@ public class GameManager : GameObject
             _scoreTracker.showAnimalStats = true;
             _scoreTracker.clickedOptions = true;
 
+            if (_residence.unlockedLion)
+            {
+                _scoreTracker.unlockedLion = true;
+            }
+
+            if (_residence.unlockedGiraffe)
+            {
+                _scoreTracker.unlockedGiraffe = true;
+            }
+
+            if (_residence.unlockedZebra)
+            {
+                _scoreTracker.unlockedZebra = true;
+            }
+
+            if (_residence.unlockedHippo)
+            {
+                _scoreTracker.unlockedHippo = true;
+            }
+
+            if (_residence.unlockedMonkey)
+            {
+                _scoreTracker.unlockedMonkey = true;
+            }
+
+            if (_residence.unlockedSeaLion)
+            {
+                _scoreTracker.unlockedSeaLion = true;
+            }
+
             if (_residence.unlockedPenguin)
             {
                 _scoreTracker.unlockedPenguin = true;
+            }
+
+            if (_residence.unlockedTurtle)
+            {
+                _scoreTracker.unlockedTurtle = true;
             }
         }
         else if (!_gameHUD.showAnimalStats)

@@ -72,24 +72,46 @@ public class ScoreTracker : Canvas
 
         if (showAnimalStats && clickedOptions)
         {
+            if (unlockedMonkey)
+            {
+                graphics.DrawString("Monkey level = " + _monkeyLevel, _font, _fontColor, 300, 410);
+            }
+
             if (unlockedPenguin)
             {
-                graphics.DrawString("Penguin level = " + _penguinLevel, _font, _fontColor, 450, 370);
+                graphics.DrawString("Penguin level = " + _penguinLevel, _font, _fontColor, 300, 460);
+            }
+            
+            if (unlockedLion)
+            {
+                graphics.DrawString("Lion level = " + _lionLevel, _font, _fontColor, 450, 510);
+            }
+
+            if (unlockedGiraffe)
+            {
+                graphics.DrawString("Giraffe level = " + _giraffeLevel, _font, _fontColor, 300, 420);
             }
 
             if (unlockedZebra)
             {
-                graphics.DrawString("Zebra level = " + _zebraLevel, _font, _fontColor, 600, 420);
+                graphics.DrawString("Zebra level = " + _zebraLevel, _font, _fontColor, 300, 470);
             }
+
+            if (unlockedHippo)
+            {
+                graphics.DrawString("Hippo level = " + _hippoLevel, _font, _fontColor, 300, 520);
+            }
+
 
             if (unlockedSeaLion)
             {
-                graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 600, 470);
+                graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 300, 620);
             }
+
 
             if (unlockedTurtle)
             {
-                graphics.DrawString("Sea Lion level = " + _turtleLevel, _font, _fontColor, 600, 520);
+                graphics.DrawString("Turtle level = " + _turtleLevel, _font, _fontColor, 300, 720);
             }
         }
         else
