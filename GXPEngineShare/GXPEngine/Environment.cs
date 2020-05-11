@@ -26,37 +26,37 @@ public class Environment : GameObject
 
     public Environment()
     {
-        _penguin = new Penguin();
-        AddChild(_penguin);
-        _penguin.SetXY(200, 800);
-
-        _zebra = new Zebra();
-        AddChild(_zebra);
-        _zebra.SetXY(200, 600);
-
-        _seaLion = new SeaLion();
-        AddChild(_seaLion);
-        _seaLion.SetXY(200, 400);
-
-        _turtle = new Turtle();
-        AddChild(_turtle);
-        _turtle.SetXY(200, 200);
-
-        _monkey = new Monkey();
-        AddChild(_monkey);
-        _monkey.SetXY(1400, 200);
-
         _lion = new Lion();
         AddChild(_lion);
-        _lion.SetXY(1400, 400);
+        _lion.SetXY(game.width / 2 - 600, 950);
 
         _giraffe = new Giraffe();
         AddChild(_giraffe);
-        _giraffe.SetXY(1400, 600);
+        _giraffe.SetXY(game.width / 2 - 800, 550);
+
+        _zebra = new Zebra();
+        AddChild(_zebra);
+        _zebra.SetXY(game.width / 2 - 500, 150);
 
         _hippo = new Hippo();
         AddChild(_hippo);
-        _hippo.SetXY(1400, 800);
+        _hippo.SetXY(game.width / 2 - 200, 100);
+
+        _monkey = new Monkey();
+        AddChild(_monkey);
+        _monkey.SetXY(game.width / 2 + 200, 100);
+
+        _seaLion = new SeaLion();
+        AddChild(_seaLion);
+        _seaLion.SetXY(game.width / 2 + 500, 150);
+
+        _penguin = new Penguin();
+        AddChild(_penguin);
+        _penguin.SetXY(game.width / 2 + 800, 550);
+
+        _turtle = new Turtle();
+        AddChild(_turtle);
+        _turtle.SetXY(game.width / 2 + 600, 950);
     }
 
     private void Update()

@@ -19,9 +19,6 @@ public class HUD : Canvas
     public Sprite _mileStonesButton;
     public Sprite _exitButton;
 
-    public Sprite _mileStonesExit;
-    public Sprite _mileStonesBackground;
-
     public int _penguinLevel;
     public int _penguinCurrentXp;
 
@@ -37,7 +34,7 @@ public class HUD : Canvas
     public bool feeding { get; set; }
 
     public int currentXpAmount = 0;
-    public bool showPenguinStats { get; set; }
+    public bool showAnimalStats { get; set; }
 
     public bool showInteractionMenu { get; set; }
 
@@ -93,17 +90,18 @@ public class HUD : Canvas
         _optionsBackground.x = game.width / 2 - _optionsBackground.width / 2;
         _optionsBackground.y = game.height / 2 - _optionsBackground.height / 2;
         _optionsBackground.visible = false;
+        SetChildIndex(_optionsBackground, 3);
 
         _continueButton = new Sprite("ContinueButton.png");
         AddChild(_continueButton);
-        _continueButton.x = game.width / 2 - _continueButton.width / 2;
-        _continueButton.y = game.height / 2 - _continueButton.height / 2 - 120;
+        _continueButton.x = game.width / 2 - _continueButton.width / 2 + 150;
+        _continueButton.y = game.height / 2 - _continueButton.height / 2 + 340;
         _continueButton.visible = false;
 
         _exitButton = new Sprite("ExitButton.png");
         AddChild(_exitButton);
-        _exitButton.x = game.width / 2 - _exitButton.width / 2;
-        _exitButton.y = game.height / 2 - _exitButton.height / 2 + 120;
+        _exitButton.x = game.width / 2 - _exitButton.width / 2 - 150;
+        _exitButton.y = game.height / 2 - _exitButton.height / 2 + 340;
         _exitButton.visible = false;
         ///////////////
     }
@@ -115,7 +113,6 @@ public class HUD : Canvas
         CheckForOptionsRequest();
         ShowInteractionMenu();
         InteractWithAnimal();
-        ShowCurrentXpAndLevel();
     }
 
     private void CheckForAnimalSwitching()
@@ -133,7 +130,6 @@ public class HUD : Canvas
                 if (Input.GetMouseButtonDown(0))
                 {
                     clickedBack = true;
-                    mainAreaActive = true;
                 }
             }
 
@@ -191,6 +187,7 @@ public class HUD : Canvas
             if (_continueButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
             {
                 clickedOptions = false;
+                showAnimalStats = false;
             }
 
             if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
@@ -248,10 +245,5 @@ public class HUD : Canvas
         //{
         //    petting = true;
         //}
-    }
-
-    private void ShowCurrentXpAndLevel()
-    {
-
     }
 }

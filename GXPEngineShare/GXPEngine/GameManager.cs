@@ -36,7 +36,6 @@ public class GameManager : GameObject
 
         _gameHUD = new HUD();
         AddChild(_gameHUD);
-        SetChildIndex(_gameHUD, 1000);
 
         _scoreTracker = new ScoreTracker();
         AddChild(_scoreTracker);
@@ -301,7 +300,6 @@ public class GameManager : GameObject
 
     private void SendXpDataToTracker()
     {
-        Console.WriteLine(_scoreTracker._penguinXp);
         if (_residence._penguinActive && _gameHUD.cleaning)
         {
             _scoreTracker._penguinXp += 10;
@@ -324,9 +322,23 @@ public class GameManager : GameObject
     private void SendXpDataToHUD()
     {
         //Penguin
-        _gameHUD.showPenguinStats = true;
         _gameHUD._penguinLevel = _scoreTracker._penguinLevel;
         _gameHUD._penguinCurrentXp = _scoreTracker._penguinXp;
         //
+
+        if (_gameHUD.clickedOptions)
+        {
+            _scoreTracker.showAnimalStats = true;
+            _scoreTracker.clickedOptions = true;
+
+            if (_residence.unlockedPenguin)
+            {
+                _scoreTracker.unlockedPenguin = true;
+            }
+        }
+        else if (!_gameHUD.showAnimalStats)
+        {
+            _scoreTracker.showAnimalStats = false;
+        }
     }
 }

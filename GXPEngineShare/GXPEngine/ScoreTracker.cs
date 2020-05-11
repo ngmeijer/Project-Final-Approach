@@ -32,12 +32,24 @@ public class ScoreTracker : Canvas
     private int _hippoLevel = 0;
     private int _hippoXp = 0;
 
+    public bool unlockedPenguin;
+    public bool unlockedTurtle;
+    public bool unlockedSeaLion;
+    public bool unlockedZebra;
+    public bool unlockedMonkey;
+    public bool unlockedLion;
+    public bool unlockedGiraffe;
+    public bool unlockedHippo;
+    public bool clickedOptions { get; set; }
+
+    public bool showAnimalStats { get; set; }
+
     private readonly Brush _fontColor;
     private readonly Font _font;
 
     public ScoreTracker() : base(1920, 1080, false)
     {
-        _fontColor = Brushes.White;
+        _fontColor = Brushes.Red;
         _font = new Font("Arial", 20);
     }
 
@@ -48,7 +60,7 @@ public class ScoreTracker : Canvas
 
     public void TrackXpAmount()
     {
-        if(_penguinXp >= maxXpAmount)
+        if (_penguinXp >= maxXpAmount)
         {
             _penguinLevel += 1;
             _penguinXp = 0;
@@ -58,6 +70,31 @@ public class ScoreTracker : Canvas
         ///
         ///
 
-        graphics.DrawString("Score = ", _font, _fontColor, 700, 500);
+        if (showAnimalStats && clickedOptions)
+        {
+            if (unlockedPenguin)
+            {
+                graphics.DrawString("Penguin level = " + _penguinLevel, _font, _fontColor, 450, 370);
+            }
+
+            if (unlockedZebra)
+            {
+                graphics.DrawString("Zebra level = " + _zebraLevel, _font, _fontColor, 600, 420);
+            }
+
+            if (unlockedSeaLion)
+            {
+                graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 600, 470);
+            }
+
+            if (unlockedTurtle)
+            {
+                graphics.DrawString("Sea Lion level = " + _turtleLevel, _font, _fontColor, 600, 520);
+            }
+        }
+        else
+        {
+            graphics.Clear(Color.Empty);
+        }
     }
 }

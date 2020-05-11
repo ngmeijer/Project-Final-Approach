@@ -17,7 +17,8 @@ public class Residence : GameObject
     public Sprite _turtleBackground { get; set; }
     public Sprite _giraffeBackground { get; set; }
 
-    public bool _penguinActive = false;
+    //Checks if the animal is CURRENTLY active
+    public bool _penguinActive { get; set; }
     public bool _zebraActive;
     public bool _seaLionActive;
     public bool _turtleActive;
@@ -25,6 +26,16 @@ public class Residence : GameObject
     public bool _lionActive;
     public bool _giraffeActive;
     public bool _hippoActive;
+
+    //Checks if the animal is actually unlocked
+    public bool unlockedPenguin { get; set; } = true;
+    public bool unlockedTurtle { get; set; }
+    public bool unlockedSeaLion { get; set; }
+    public bool unlockedZebra { get; set; }
+    public bool unlockedMonkey { get; set; }
+    public bool unlockedLion { get; set; }
+    public bool unlockedGiraffe { get; set; }
+    public bool unlockedHippo { get; set; }
 
     public Residence() : base()
     {
@@ -127,6 +138,7 @@ public class Residence : GameObject
         {
             _penguinBackground.visible = true;
             _penguin.visible = true;
+            unlockedPenguin = true;
         }
         else
         {
@@ -137,6 +149,7 @@ public class Residence : GameObject
         if (_zebraActive)
         {
             _zebra.visible = true;
+            unlockedZebra = true;
         }
         else
         {
@@ -147,6 +160,7 @@ public class Residence : GameObject
         {
             _seaLionBackground.visible = true;
             _seaLion.visible = true;
+            unlockedSeaLion = true;
         }
         else
         {
@@ -158,6 +172,7 @@ public class Residence : GameObject
         {
             _turtleBackground.visible = true;
             _turtle.visible = true;
+            unlockedTurtle = true;
         }
         else
         {
@@ -168,6 +183,7 @@ public class Residence : GameObject
         if (_monkeyActive)
         {
             _monkey.visible = true;
+            unlockedMonkey = true;
         }
         else
         {
@@ -177,6 +193,7 @@ public class Residence : GameObject
         if (_lionActive)
         {
             _lion.visible = true;
+            unlockedLion = true;
         }
         else
         {
@@ -187,6 +204,7 @@ public class Residence : GameObject
         {
             _giraffe.visible = true;
             _giraffeBackground.visible = true;
+            unlockedGiraffe = true;
         }
         else
         {
@@ -197,6 +215,7 @@ public class Residence : GameObject
         if (_hippoActive)
         {
             _hippo.visible = true;
+            unlockedHippo = true;
         }
         else
         {
