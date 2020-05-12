@@ -6,14 +6,16 @@ public class Environment : GameObject
 {
     public bool canClickOnResidence { get; set; }
 
-    public Penguin _penguin { get; private set; }
-    public Zebra _zebra { get; private set; }
-    public SeaLion _seaLion { get; private set; }
-    public Turtle _turtle { get; private set; }
-    public Monkey _monkey { get; private set; }
-    public Lion _lion { get; private set; }
-    public Giraffe _giraffe { get; private set; }
-    public Hippo _hippo { get; private set; }
+
+    public Sprite HubBackground { get; private set; }
+    public Sprite _penguin { get; private set; }
+    public Sprite _zebra { get; private set; }
+    public Sprite _seaLion { get; private set; }
+    public Sprite _turtle { get; private set; }
+    public Sprite _monkey { get; private set; }
+    public Sprite _lion { get; private set; }
+    public Sprite _giraffe { get; private set; }
+    public Sprite _hippo { get; private set; }
 
     public bool clickedPenguin { get; set; }
     public bool clickedZebra { get; set; }
@@ -38,45 +40,40 @@ public class Environment : GameObject
 
     public Environment()
     {
-        _lion = new Lion();
-        AddChild(_lion);
-        _lion.SetXY(game.width / 2 - 600, 700);
-        _lion.scale = 0.4f;
+        HubBackground = new Sprite("HubNoAnimals.png");
+        AddChild(HubBackground);
 
-        _giraffe = new Giraffe();
-        AddChild(_giraffe);
-        _giraffe.SetXY(game.width / 2 - 800, 200);
-        _giraffe.scale = 1f;
-
-        _zebra = new Zebra();
+        _zebra = new Sprite("HubZebra.png");
         AddChild(_zebra);
-        _zebra.SetXY(game.width / 2 - 500, 150);
-        _zebra.scale = 0.3f;
+        _zebra.SetXY(game.width / 2 - 950, 450);
 
-        _hippo = new Hippo();
+        _giraffe = new Sprite("HubGiraffe.png");
+        AddChild(_giraffe);
+        _giraffe.SetXY(game.width / 2 - 950, 0);
+
+        _lion = new Sprite("HubLion.png");
+        AddChild(_lion);
+        _lion.SetXY(game.width / 2 - 600, 750);
+
+        _hippo = new Sprite("HubHippo.png");
         AddChild(_hippo);
-        _hippo.SetXY(game.width / 2 - 200, 100);
-        _hippo.scale = 0.3f;
+        _hippo.SetXY(game.width / 2 - 400, 100);
 
-        _monkey = new Monkey();
+        _monkey = new Sprite("HubMonkey.png");
         AddChild(_monkey);
-        _monkey.SetXY(game.width / 2 + 200, 100);
-        _monkey.scale = 0.3f;
+        _monkey.SetXY(game.width / 2, -20);
 
-        _seaLion = new SeaLion();
+        _seaLion = new Sprite("HubSeaLion.png");
         AddChild(_seaLion);
-        _seaLion.SetXY(game.width / 2 + 500, 150);
-        _seaLion.scale = 0.3f;
+        _seaLion.SetXY(game.width / 2 + 400, 200);
 
-        _penguin = new Penguin();
+        _penguin = new Sprite("HubPenguin.png");
         AddChild(_penguin);
-        _penguin.SetXY(game.width / 2 + 800, 550);
-        _penguin.scale = 0.3f;
+        _penguin.SetXY(game.width / 2 + 550, 520);
 
-        _turtle = new Turtle();
+        _turtle = new Sprite("HubTurtle.png");
         AddChild(_turtle);
-        _turtle.SetXY(game.width / 2 + 600, 950);
-        _turtle.scale = 0.3f;
+        _turtle.SetXY(game.width / 2 + 250, 760);
 
         animals.Add(_lion);
         animals.Add(_giraffe);

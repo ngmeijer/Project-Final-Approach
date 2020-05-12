@@ -27,7 +27,7 @@ public class GameManager : GameObject
         _environment = new Environment();
         _environment.OnAnimalClicked += onAnimalClicked;
         AddChild(_environment);
-        _environment.x = 1920;
+        _environment.x = 2300;
 
         //Animal residences
         _residence = new Residence();
@@ -48,6 +48,8 @@ public class GameManager : GameObject
         Console.WriteLine("Animal clicked:"+pSprite);
         Console.WriteLine("Is giraffe "+(pSprite == _environment._giraffe));
 
+        _gameHUD.clickedOptions = false;
+
         if(pSprite == _environment._penguin)
         {
             environmentActive = false;
@@ -57,10 +59,10 @@ public class GameManager : GameObject
 
         if (pSprite == _environment._zebra)
         {
+            Console.WriteLine("true");
             environmentActive = false;
             residenceActive = true;
             _residence._zebraActive = true;
-            currentAnimal = 1;
         }
 
         if (pSprite == _environment._seaLion)
@@ -110,6 +112,7 @@ public class GameManager : GameObject
 
     private void turnOffAllAnimals()
     {
+
         _environment.clickedPenguin = false;
         _environment.clickedZebra = false;
         _environment.clickedSeaLion = false;

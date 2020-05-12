@@ -49,7 +49,7 @@ public class ScoreTracker : Canvas
     public ScoreTracker() : base(1920, 1080, false)
     {
         _fontColor = Brushes.Red;
-        _font = new Font("Arial", 20);
+        _font = new Font("Arial", 30);
     }
 
     private void Update()
@@ -71,46 +71,46 @@ public class ScoreTracker : Canvas
 
         if (showAnimalStats && clickedOptions)
         {
-            if (unlockedMonkey)
-            {
-                graphics.DrawString("Monkey level = " + _monkeyLevel, _font, _fontColor, 300, 410);
-            }
-
             if (unlockedPenguin)
             {
-                graphics.DrawString("Penguin level = " + _penguinLevel, _font, _fontColor, 300, 460);
+                graphics.DrawString("Penguin level = " + _penguinLevel, _font, _fontColor, 630, 410);
             }
-            
+
+            if (unlockedMonkey)
+            {
+                graphics.DrawString("Monkey level = " + _monkeyLevel, _font, _fontColor, 630, 460);
+            }
+
             if (unlockedLion)
             {
-                graphics.DrawString("Lion level = " + _lionLevel, _font, _fontColor, 450, 510);
+                graphics.DrawString("Lion level = " + _lionLevel, _font, _fontColor, 630, 510);
             }
 
             if (unlockedGiraffe)
             {
-                graphics.DrawString("Giraffe level = " + _giraffeLevel, _font, _fontColor, 300, 420);
+                graphics.DrawString("Giraffe level = " + _giraffeLevel, _font, _fontColor, 630, 560);
             }
 
             if (unlockedZebra)
             {
-                graphics.DrawString("Zebra level = " + _zebraLevel, _font, _fontColor, 300, 470);
+                graphics.DrawString("Zebra level = " + _zebraLevel, _font, _fontColor, 970, 410);
             }
 
             if (unlockedHippo)
             {
-                graphics.DrawString("Hippo level = " + _hippoLevel, _font, _fontColor, 300, 520);
+                graphics.DrawString("Hippo level = " + _hippoLevel, _font, _fontColor, 970, 460);
             }
 
 
             if (unlockedSeaLion)
             {
-                graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 300, 620);
+                graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 970, 510);
             }
 
 
             if (unlockedTurtle)
             {
-                graphics.DrawString("Turtle level = " + _turtleLevel, _font, _fontColor, 300, 720);
+                graphics.DrawString("Turtle level = " + _turtleLevel, _font, _fontColor, 970, 560);
             }
         }
         else

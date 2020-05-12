@@ -187,7 +187,7 @@ public class HUD : Canvas
 
             if (clickedOptions)
             {
-                _optionsBackground.visible = true;
+                //_optionsBackground.visible = true;
                 _continueButton.visible = true;
                 _exitButton.visible = true;
             }
