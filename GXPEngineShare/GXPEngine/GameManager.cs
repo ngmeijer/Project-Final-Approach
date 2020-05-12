@@ -16,7 +16,7 @@ public class GameManager : GameObject
     public bool residenceActive;
     public bool environmentActive;
 
-    private int currentAnimal;
+    public int currentAnimal { get; set; }
     private int lastAnimal = 7;
 
     public GameManager()
@@ -62,6 +62,47 @@ public class GameManager : GameObject
 
     private void CheckResidenceActivity()
     {
+        if (_residence._penguinActive)
+        {
+            currentAnimal = 0;
+        }
+
+        if (_residence._zebraActive)
+        {
+            currentAnimal = 1;
+        }
+
+        if (_environment.clickedSeaLion)
+        {
+            currentAnimal = 2;
+        }
+
+        if (_environment.clickedTurtle)
+        {
+            currentAnimal = 3;
+        }
+
+        if (_environment.clickedMonkey)
+        {
+            currentAnimal = 4;
+        }
+
+        if (_environment.clickedLion)
+        {
+            currentAnimal = 5;
+        }
+
+        if (_environment.clickedGiraffe)
+        {
+            currentAnimal = 6;
+        }
+        
+        if (_environment.clickedHippo)
+        {
+            currentAnimal = 7;
+            _environment.clickedHippo = false;
+        }
+
         ////////////
         if (residenceActive)
         {
@@ -202,6 +243,7 @@ public class GameManager : GameObject
 
     private void SwitchAnimals()
     {
+        Console.WriteLine(currentAnimal);
         if (residenceActive)
         {
             switch (currentAnimal)

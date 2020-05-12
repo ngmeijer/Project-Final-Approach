@@ -49,9 +49,10 @@ public class Residence : GameObject
         _penguin = new Penguin();
         AddChild(_penguin);
         _penguin.x = game.width / 2;
-        _penguin.y = 100;
+        _penguin.y = 200;
         _penguinActive = false;
         _penguin.visible = false;
+        _penguin.scale = 0.5f;
         //
 
         //Zebra residence
@@ -61,6 +62,7 @@ public class Residence : GameObject
         _zebra.y = 200;
         _zebraActive = false;
         _zebra.visible = false;
+        _zebra.scale = 0.5f;
         //
 
         //Sea lion residence
@@ -70,10 +72,11 @@ public class Residence : GameObject
 
         _seaLion = new SeaLion();
         AddChild(_seaLion);
-        _seaLion.x = game.width / 2;
-        _seaLion.y = 300;
+        _seaLion.x = game.width / 2 - 400;
+        _seaLion.y = 250;
         _seaLionActive = false;
         _seaLion.visible = false;
+        _seaLion.scale = 0.5f;
         //
 
         //Turtle residence
@@ -83,19 +86,21 @@ public class Residence : GameObject
 
         _turtle = new Turtle();
         AddChild(_turtle);
-        _turtle.x = game.width / 2;
-        _turtle.y = 400;
+        _turtle.x = game.width / 2 - 300;
+        _turtle.y = 200;
         _turtleActive = false;
         _turtle.visible = false;
+        _turtle.scale = 0.7f;
         //
 
         //Monkey residence
         _monkey = new Monkey();
         AddChild(_monkey);
         _monkey.x = game.width / 2;
-        _monkey.y = 500;
+        _monkey.y = 100;
         _monkeyActive = false;
         _monkey.visible = false;
+        _monkey.scale = 0.7f;
         //
 
         //Lion residence
@@ -105,10 +110,11 @@ public class Residence : GameObject
 
         _lion = new Lion();
         AddChild(_lion);
-        _lion.x = game.width / 2;
-        _lion.y = 600;
+        _lion.x = game.width / 2 + 230;
+        _lion.y = 130;
         _lionActive = false;
         _lion.visible = false;
+        _lion.scale = 0.5f;
         //
 
         //Giraffe (a.k.a. "Tall-Neck-Horsie")  residence
@@ -119,9 +125,10 @@ public class Residence : GameObject
         _giraffe = new Giraffe();
         AddChild(_giraffe);
         _giraffe.x = game.width / 2;
-        _giraffe.y = 700;
+        _giraffe.y = 180;
         _giraffeActive = false;
         _giraffe.visible = false;
+        _giraffe.scale = 1.2f;
 
         //Hippo residence
         _hippoBackground = new Sprite("HippoBackground.png");
@@ -130,10 +137,11 @@ public class Residence : GameObject
 
         _hippo = new Hippo();
         AddChild(_hippo);
-        _hippo.x = game.width / 2;
-        _hippo.y = 800;
+        _hippo.x = game.width / 2 - 300;
+        _hippo.y = 370;
         _hippoActive = false;
         _hippo.visible = false;
+        _hippo.scale = 0.5f;
         //
     }
 

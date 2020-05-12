@@ -5,7 +5,6 @@ using GXPEngine;
 public class ScoreTracker : Canvas
 {
     private float _multiplier = 1.15f;
-    //
 
     public int _penguinLevel { get; set; } = 0;
     public int _penguinXp { get; set; } = 0;
