@@ -10,7 +10,8 @@ public class HUD : Canvas
     public Sprite _lowerButton;
     public Sprite _interactionMenuButton;
     public Sprite _cleanIcon;
-    public Sprite _feedIcon;
+    public Sprite _meatIcon;
+    public Sprite _veggieIcon;
     public Sprite _petIcon;
 
     public Sprite _optionsButton;
@@ -21,6 +22,9 @@ public class HUD : Canvas
 
     public int _penguinLevel;
     public int _penguinCurrentXp;
+
+    public bool carnivore;
+    public bool herbivore;
 
     public bool clickedBack { get; set; }
     public bool clickedLeft { get; set; }
@@ -70,11 +74,17 @@ public class HUD : Canvas
         _cleanIcon.y = 80;
         _cleanIcon.visible = false;
 
-        _feedIcon = new Sprite("FeedIcon.png");
-        AddChild(_feedIcon);
-        _feedIcon.x = game.width - 150;
-        _feedIcon.y = 180;
-        _feedIcon.visible = false;
+        _meatIcon = new Sprite("MeatIcon.png");
+        AddChild(_meatIcon);
+        _meatIcon.x = game.width - 150;
+        _meatIcon.y = 180;
+        _meatIcon.visible = false;
+
+        _veggieIcon = new Sprite("VeggieIcon.png");
+        AddChild(_veggieIcon);
+        _veggieIcon.x = game.width - 150;
+        _veggieIcon.y = 180;
+        _veggieIcon.visible = false;
 
         _petIcon = new Sprite("PetIcon.png");
         AddChild(_petIcon);
@@ -212,14 +222,28 @@ public class HUD : Canvas
         {
             if (showInteractionMenu)
             {
+                if (carnivore)
+                {
+                    _meatIcon.visible = true;
+                    _veggieIcon.visible = false;
+                    herbivore = false;
+                }
+
+                if (herbivore)
+                {
+                    _veggieIcon.visible = true;
+                    _meatIcon.visible = false;
+                    carnivore = false;
+                }
+
                 _cleanIcon.visible = true;
-                _feedIcon.visible = true;
                 _petIcon.visible = true;
             }
             else if (!showInteractionMenu)
             {
                 _cleanIcon.visible = false;
-                _feedIcon.visible = false;
+                _meatIcon.visible = false;
+                _veggieIcon.visible = false;
                 _petIcon.visible = false;
             }
 
@@ -242,7 +266,8 @@ public class HUD : Canvas
             cleaning = true;
         }
 
-        if (_feedIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        if (_meatIcon.HitTestPoint(Input.mouseX, Input.mouseY) || _veggieIcon.HitTestPoint(Input.mouseX, Input.mouseY) 
+            && Input.GetMouseButtonDown(0))
         {
             feeding = true;
         }

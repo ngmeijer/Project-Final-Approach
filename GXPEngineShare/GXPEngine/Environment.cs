@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GXPEngine;
 
 public class Environment : GameObject
@@ -23,12 +24,17 @@ public class Environment : GameObject
     public bool clickedGiraffe { get; set; }
     public bool clickedHippo { get; set; }
 
+    public int currentAnimal;
+
     //3 starting animals
     //Penguin monkey lion
 
     //5 starting animals
     //Penguin monkey lion giraffe zebra
 
+    private List<Sprite> animals = new List<Sprite>();
+
+    public event Action<Sprite> OnAnimalClicked = delegate { };
 
     public Environment()
     {
@@ -71,6 +77,15 @@ public class Environment : GameObject
         AddChild(_turtle);
         _turtle.SetXY(game.width / 2 + 600, 950);
         _turtle.scale = 0.3f;
+
+        animals.Add(_lion);
+        animals.Add(_giraffe);
+        animals.Add(_zebra);
+        animals.Add(_hippo);
+        animals.Add(_monkey);
+        animals.Add(_seaLion);
+        animals.Add(_penguin);
+        animals.Add(_turtle);
     }
 
     private void Update()
@@ -78,15 +93,31 @@ public class Environment : GameObject
         ClickResidence();
     }
 
-    //Trying out to place items relative to screen size.
-    //private void RelativePlacement(int xPixels, int yPixels)
-    //{
-    //    int xPixelsPercent = xPixels / game.width;
-    //    int yPixelsPercent = yPixels / game.height;
-    //}
+    /*
+    private void pseudoCode()
+    {
+        InteractiveImage animal = new InteractiveImage("zebra", x, y, index);
+        animal.onClicked += onZebraClicked;
+        animal.onClicked += onAnimalClicked;
+
+        InteractiveImage leftButton = ....
+            leftButton.onClicked ...
+    }
+    */
 
     private void ClickResidence()
     {
+        if (!Input.GetMouseButtonDown(0)) return; 
+
+        foreach (Sprite animal in animals)
+        {
+            if (animal.HitTestPoint(Input.mouseX, Input.mouseY))
+            {
+                OnAnimalClicked(animal);
+            }
+        }
+
+        /*
         if (canClickOnResidence)
         {
             if (_penguin.HitTestPoint(Input.mouseX, Input.mouseY))
@@ -153,5 +184,6 @@ public class Environment : GameObject
                 }
             }
         }
+        */
     }
 }

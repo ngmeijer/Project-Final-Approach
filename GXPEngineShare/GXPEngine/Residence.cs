@@ -13,8 +13,10 @@ public class Residence : GameObject
     private Hippo _hippo;
 
     public Sprite _penguinBackground { get; set; }
+    public Sprite _zebraBackground { get; set; }
     public Sprite _seaLionBackground { get; set; }
     public Sprite _turtleBackground { get; set; }
+    public Sprite _monkeyBackground { get; set; }
     public Sprite _giraffeBackground { get; set; }
     public Sprite _lionBackground { get; set; }
     public Sprite _hippoBackground { get; set; }
@@ -56,6 +58,10 @@ public class Residence : GameObject
         //
 
         //Zebra residence
+        _zebraBackground = new Sprite("ZebraBackground.png");
+        AddChild(_zebraBackground);
+        _zebraBackground.visible = false;
+
         _zebra = new Zebra();
         AddChild(_zebra);
         _zebra.x = game.width / 2;
@@ -94,10 +100,14 @@ public class Residence : GameObject
         //
 
         //Monkey residence
+        _monkeyBackground = new Sprite("MonkeyBackground.png");
+        AddChild(_monkeyBackground);
+        _monkeyBackground.visible = false;
+
         _monkey = new Monkey();
         AddChild(_monkey);
-        _monkey.x = game.width / 2;
-        _monkey.y = 100;
+        _monkey.x = game.width / 2 - 620;
+        _monkey.y = 277;
         _monkeyActive = false;
         _monkey.visible = false;
         _monkey.scale = 0.7f;
@@ -117,7 +127,7 @@ public class Residence : GameObject
         _lion.scale = 0.5f;
         //
 
-        //Giraffe (a.k.a. "Tall-Neck-Horsie")  residence
+        //Giraffe residence
         _giraffeBackground = new Sprite("GiraffeBackground.png");
         AddChild(_giraffeBackground);
         _giraffeBackground.visible = false;
@@ -166,11 +176,13 @@ public class Residence : GameObject
 
         if (_zebraActive)
         {
+            _zebraBackground.visible = true;
             _zebra.visible = true;
             unlockedZebra = true;
         }
         else
         {
+            _zebraBackground.visible = false;
             _zebra.visible = false;
         }
 
@@ -200,11 +212,13 @@ public class Residence : GameObject
 
         if (_monkeyActive)
         {
+            _monkeyBackground.visible = true;
             _monkey.visible = true;
             unlockedMonkey = true;
         }
         else
         {
+            _monkeyBackground.visible = false;
             _monkey.visible = false;
         }
 
