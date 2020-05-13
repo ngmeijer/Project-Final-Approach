@@ -266,8 +266,8 @@ public class HUD : Canvas
             cleaning = true;
         }
 
-        if (_meatIcon.HitTestPoint(Input.mouseX, Input.mouseY) || _veggieIcon.HitTestPoint(Input.mouseX, Input.mouseY) 
-            && Input.GetMouseButtonDown(0))
+        if ((_meatIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0)) || 
+            (_veggieIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0)))
         {
             feeding = true;
         }

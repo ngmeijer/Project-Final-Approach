@@ -340,6 +340,7 @@ public class GameManager : GameObject
 
     private void SendXpDataToTracker()
     {
+        ////
         if (_residence._penguinActive && _gameHUD.cleaning)
         {
             _scoreTracker._penguinXp += 10;
@@ -357,6 +358,147 @@ public class GameManager : GameObject
             _scoreTracker._penguinXp += 5;
             _gameHUD.petting = false;
         }
+        ///
+
+        ///
+        if (_residence._monkeyActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._monkeyXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._monkeyActive && _gameHUD.feeding)
+        {
+            _scoreTracker._monkeyXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._monkeyActive && _gameHUD.petting)
+        {
+            _scoreTracker._monkeyXp += 5;
+            _gameHUD.petting = false;
+        }
+        ///
+
+        ///
+        if (_residence._lionActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._lionXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._lionActive && _gameHUD.feeding)
+        {
+            _scoreTracker._lionXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._lionActive && _gameHUD.petting)
+        {
+            _scoreTracker._lionXp += 5;
+            _gameHUD.petting = false;
+        }
+        ///
+
+        ///
+        if (_residence._giraffeActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._giraffeXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._giraffeActive && _gameHUD.feeding)
+        {
+            _scoreTracker._giraffeXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._giraffeActive && _gameHUD.petting)
+        {
+            _scoreTracker._giraffeXp += 5;
+            _gameHUD.petting = false;
+        }
+        ///
+
+        ///
+        if (_residence._zebraActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._zebraXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._zebraActive && _gameHUD.feeding)
+        {
+            _scoreTracker._zebraXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._zebraActive && _gameHUD.petting)
+        {
+            _scoreTracker._zebraXp += 5;
+            _gameHUD.petting = false;
+        }
+        ///
+
+        ///
+        if (_residence._hippoActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._hippoXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._hippoActive && _gameHUD.feeding)
+        {
+            _scoreTracker._hippoXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._hippoActive && _gameHUD.petting)
+        {
+            _scoreTracker._hippoXp += 5;
+            _gameHUD.petting = false;
+        }
+        ///
+
+        ///
+        if (_residence._seaLionActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._seaLionXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._seaLionActive && _gameHUD.feeding)
+        {
+            _scoreTracker._seaLionXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._seaLionActive && _gameHUD.petting)
+        {
+            _scoreTracker._seaLionXp += 5;
+            _gameHUD.petting = false;
+        }
+        ///
+
+        ///
+        if (_residence._turtleActive && _gameHUD.cleaning)
+        {
+            _scoreTracker._turtleXp += 10;
+            _gameHUD.cleaning = false;
+        }
+
+        if (_residence._turtleActive && _gameHUD.feeding)
+        {
+            _scoreTracker._turtleXp += 15;
+            _gameHUD.feeding = false;
+        }
+
+        if (_residence._turtleActive && _gameHUD.petting)
+        {
+            _scoreTracker._turtleXp += 5;
+            _gameHUD.petting = false;
+        }
+        ///
     }
 
     private void SendXpDataToHUD()
