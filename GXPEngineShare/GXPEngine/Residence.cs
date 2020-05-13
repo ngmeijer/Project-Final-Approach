@@ -35,7 +35,7 @@ public class Residence : GameObject
     public bool unlockedPenguin { get; set; } = true;
     public bool unlockedTurtle { get; set; }
     public bool unlockedSeaLion { get; set; }
-    public bool unlockedZebra { get; set; }
+    public bool unlockedZebra { get; set; } = false;
     public bool unlockedMonkey { get; set; } = true;
     public bool unlockedLion { get; set; } = true;
     public bool unlockedGiraffe { get; set; }
@@ -178,7 +178,6 @@ public class Residence : GameObject
         {
             _zebraBackground.visible = true;
             _zebra.visible = true;
-            unlockedZebra = true;
         }
         else
         {
@@ -190,7 +189,6 @@ public class Residence : GameObject
         {
             _seaLionBackground.visible = true;
             _seaLion.visible = true;
-            unlockedSeaLion = true;
         }
         else
         {
@@ -202,7 +200,6 @@ public class Residence : GameObject
         {
             _turtleBackground.visible = true;
             _turtle.visible = true;
-            unlockedTurtle = true;
         }
         else
         {
@@ -238,7 +235,6 @@ public class Residence : GameObject
         {
             _giraffe.visible = true;
             _giraffeBackground.visible = true;
-            unlockedGiraffe = true;
         }
         else
         {
@@ -250,7 +246,6 @@ public class Residence : GameObject
         {
             _hippoBackground.visible = true;
             _hippo.visible = true;
-            unlockedHippo = true;
         }
         else
         {

@@ -17,7 +17,7 @@ public class GameManager : GameObject
     public bool environmentActive;
 
     public int currentAnimal { get; set; }
-    private int lastAnimal = 7;
+    private int lastAnimal = 2;
 
     public GameManager()
     {
@@ -42,27 +42,32 @@ public class GameManager : GameObject
         AddChild(_scoreTracker);
     }
 
-
     private void onAnimalClicked(Sprite pSprite)
     {
-        Console.WriteLine("Animal clicked:"+pSprite);
-        Console.WriteLine("Is giraffe "+(pSprite == _environment._giraffe));
+        //Console.WriteLine("Animal clicked:"+pSprite);
+        //Console.WriteLine("Is giraffe "+(pSprite == _environment._giraffe));
 
         _gameHUD.clickedOptions = false;
 
-        if(pSprite == _environment._penguin)
+        if (pSprite == _environment._penguin)
         {
             environmentActive = false;
             residenceActive = true;
             _residence._penguinActive = true;
         }
 
-        if (pSprite == _environment._zebra)
+        if (_scoreTracker.unlockedZebra)
         {
-            Console.WriteLine("true");
-            environmentActive = false;
-            residenceActive = true;
-            _residence._zebraActive = true;
+            if (pSprite == _environment._zebra)
+            {
+                environmentActive = false;
+                residenceActive = true;
+                _residence._zebraActive = true;
+            }
+        }
+        else if(!_residence.unlockedZebra)
+        {
+            _environment._zebra.visible = false;
         }
 
         if (pSprite == _environment._seaLion)
@@ -110,28 +115,6 @@ public class GameManager : GameObject
         //turnOffAllAnimals(!pSprite);
     }
 
-    private void turnOffAllAnimals()
-    {
-
-        _environment.clickedPenguin = false;
-        _environment.clickedZebra = false;
-        _environment.clickedSeaLion = false;
-        _environment.clickedTurtle = false;
-        _environment.clickedMonkey = false;
-        _environment.clickedLion = false;
-        _environment.clickedGiraffe = false;
-        _environment.clickedHippo = false;
-
-        _residence._penguinActive = false;
-        _residence._zebraActive = false;
-        _residence._seaLionActive = false;
-        _residence._turtleActive = false;
-        _residence._monkeyActive = false;
-        _residence._lionActive = false;
-        _residence._giraffeActive = false;
-        _residence._hippoActive = false;
-    }
-
     private void Update()
     {
         CheckLevelStart();
@@ -139,13 +122,14 @@ public class GameManager : GameObject
         SwitchAnimals();
         SendXpDataToTracker();
         SendXpDataToHUD();
+        CheckAnimalLevelProgress();
     }
 
     private void CheckLevelStart()
     {
         if (_menu.levelStarted && !residenceActive)
         {
-            _menu.x = 1920;
+            _menu.x = 3000;
             _environment.x = 0;
             environmentActive = true;
         }
@@ -237,48 +221,6 @@ public class GameManager : GameObject
                     _gameHUD.herbivore = false;
                     break;
                 case 1:
-                    //Zebra
-                    _residence._penguinActive = false;
-                    _residence._zebraActive = true;
-                    _residence._seaLionActive = false;
-                    _residence._turtleActive = false;
-                    _residence._monkeyActive = false;
-                    _residence._lionActive = false;
-                    _residence._giraffeActive = false;
-                    _residence._hippoActive = false;
-
-                    _gameHUD.herbivore = true;
-                    _gameHUD.carnivore = false;
-                    break;
-                case 2:
-                    //Sea-lion
-                    _residence._penguinActive = false;
-                    _residence._zebraActive = false;
-                    _residence._seaLionActive = true;
-                    _residence._turtleActive = false;
-                    _residence._monkeyActive = false;
-                    _residence._lionActive = false;
-                    _residence._giraffeActive = false;
-                    _residence._hippoActive = false;
-
-                    _gameHUD.carnivore = true;
-                    _gameHUD.herbivore = false;
-                    break;
-                case 3:
-                    //Turtle
-                    _residence._penguinActive = false;
-                    _residence._zebraActive = false;
-                    _residence._seaLionActive = false;
-                    _residence._turtleActive = true;
-                    _residence._monkeyActive = false;
-                    _residence._lionActive = false;
-                    _residence._giraffeActive = false;
-                    _residence._hippoActive = false;
-
-                    _gameHUD.herbivore = true;
-                    _gameHUD.carnivore = false;
-                    break;
-                case 4:
                     //Monkey
                     _residence._penguinActive = false;
                     _residence._zebraActive = false;
@@ -292,21 +234,7 @@ public class GameManager : GameObject
                     _gameHUD.herbivore = true;
                     _gameHUD.carnivore = false;
                     break;
-                case 5:
-                    //Lion
-                    _residence._penguinActive = false;
-                    _residence._zebraActive = false;
-                    _residence._seaLionActive = false;
-                    _residence._turtleActive = false;
-                    _residence._monkeyActive = false;
-                    _residence._lionActive = true;
-                    _residence._giraffeActive = false;
-                    _residence._hippoActive = false;
-
-                    _gameHUD.carnivore = true;
-                    _gameHUD.herbivore = false;
-                    break;
-                case 6:
+                case 2:
                     //Giraffe
                     _residence._penguinActive = false;
                     _residence._zebraActive = false;
@@ -320,7 +248,35 @@ public class GameManager : GameObject
                     _gameHUD.herbivore = true;
                     _gameHUD.carnivore = false;
                     break;
-                case 7:
+                case 3:
+                    //Lion
+                    _residence._penguinActive = false;
+                    _residence._zebraActive = false;
+                    _residence._seaLionActive = false;
+                    _residence._turtleActive = false;
+                    _residence._monkeyActive = false;
+                    _residence._lionActive = true;
+                    _residence._giraffeActive = false;
+                    _residence._hippoActive = false;
+
+                    _gameHUD.carnivore = true;
+                    _gameHUD.herbivore = false;
+                    break;
+                case 4:
+                    //Zebra
+                    _residence._penguinActive = false;
+                    _residence._zebraActive = true;
+                    _residence._seaLionActive = false;
+                    _residence._turtleActive = false;
+                    _residence._monkeyActive = false;
+                    _residence._lionActive = false;
+                    _residence._giraffeActive = false;
+                    _residence._hippoActive = false;
+
+                    _gameHUD.herbivore = true;
+                    _gameHUD.carnivore = false;
+                    break;
+                case 5:
                     //Hippo
                     _residence._penguinActive = false;
                     _residence._zebraActive = false;
@@ -330,6 +286,34 @@ public class GameManager : GameObject
                     _residence._lionActive = false;
                     _residence._giraffeActive = false;
                     _residence._hippoActive = true;
+
+                    _gameHUD.herbivore = true;
+                    _gameHUD.carnivore = false;
+                    break;
+                case 6:
+                    //Sea-lion
+                    _residence._penguinActive = false;
+                    _residence._zebraActive = false;
+                    _residence._seaLionActive = true;
+                    _residence._turtleActive = false;
+                    _residence._monkeyActive = false;
+                    _residence._lionActive = false;
+                    _residence._giraffeActive = false;
+                    _residence._hippoActive = false;
+
+                    _gameHUD.carnivore = true;
+                    _gameHUD.herbivore = false;
+                    break;
+                case 7:
+                    //Turtle
+                    _residence._penguinActive = false;
+                    _residence._zebraActive = false;
+                    _residence._seaLionActive = false;
+                    _residence._turtleActive = true;
+                    _residence._monkeyActive = false;
+                    _residence._lionActive = false;
+                    _residence._giraffeActive = false;
+                    _residence._hippoActive = false;
 
                     _gameHUD.herbivore = true;
                     _gameHUD.carnivore = false;
@@ -557,5 +541,61 @@ public class GameManager : GameObject
         {
             _scoreTracker.showAnimalStats = false;
         }
+    }
+
+    private void CheckAnimalLevelProgress()
+    {
+        if(_scoreTracker._penguinLevel == 1 
+            && _scoreTracker._monkeyLevel == 1 
+            && _scoreTracker._lionLevel == 1)
+        {
+            _residence.unlockedZebra = true;
+        }
+
+        if(_scoreTracker._zebraLevel == 1)
+        {
+            _residence.unlockedGiraffe = true;
+        }
+
+        if(_scoreTracker._giraffeLevel == 1)
+        {
+            _residence.unlockedHippo = true;
+        }
+
+        if(_scoreTracker._hippoLevel == 1)
+        {
+            _residence.unlockedSeaLion = true;
+        }
+
+        if(_scoreTracker._seaLionLevel >= 1)
+        {
+            _residence.unlockedTurtle = true;
+        }
+        else
+        {
+            _residence.unlockedTurtle = false;
+        }
+    }
+
+    private void turnOffAllAnimals()
+    {
+
+        _environment.clickedPenguin = false;
+        _environment.clickedZebra = false;
+        _environment.clickedSeaLion = false;
+        _environment.clickedTurtle = false;
+        _environment.clickedMonkey = false;
+        _environment.clickedLion = false;
+        _environment.clickedGiraffe = false;
+        _environment.clickedHippo = false;
+
+        _residence._penguinActive = false;
+        _residence._zebraActive = false;
+        _residence._seaLionActive = false;
+        _residence._turtleActive = false;
+        _residence._monkeyActive = false;
+        _residence._lionActive = false;
+        _residence._giraffeActive = false;
+        _residence._hippoActive = false;
     }
 }

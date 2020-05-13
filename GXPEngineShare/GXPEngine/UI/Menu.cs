@@ -15,6 +15,7 @@ public class Menu : GameObject
     public bool levelStarted { get; set; }
 
     //Sprites
+    private Sprite _menuBackground;
 
     #endregion
 
@@ -22,6 +23,9 @@ public class Menu : GameObject
 
     public Menu() : base()
     {
+        _menuBackground = new Sprite("MenuBackground.png");
+        AddChild(_menuBackground);
+
         _startButton = new StartButton();
         AddChild(_startButton);
         _startButton.x = (game.width / 2) - (_startButton.width / 2);

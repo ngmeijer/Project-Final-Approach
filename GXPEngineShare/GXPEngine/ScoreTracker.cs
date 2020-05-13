@@ -4,6 +4,7 @@ using GXPEngine;
 
 public class ScoreTracker : Canvas
 {
+    #region
     private float _multiplier = 1.15f;
     private int maxLevel = 10;
 
@@ -68,8 +69,12 @@ public class ScoreTracker : Canvas
 
     public bool showAnimalStats { get; set; }
 
+    public int lastAnimal { get; set; } = 2;
+
     private readonly Brush _fontColor;
     private readonly Font _font;
+
+    #endregion
 
     public ScoreTracker() : base(1920, 1080, false)
     {
@@ -85,6 +90,7 @@ public class ScoreTracker : Canvas
     public void TrackXpAmount()
     {
         //Console.WriteLine("lion current xp: " + _lionXp + ", lion current level: " + _lionLevel);
+        
         #region
 
         if (_penguinXp >= maxXpAmountPenguin)
@@ -94,49 +100,49 @@ public class ScoreTracker : Canvas
             maxXpAmountPenguin *= _multiplier;
         }
 
-        if (_zebraXp >= maxXpAmountZebra)
+        if (_zebraXp >= maxXpAmountZebra && _zebraLevel <= 10)
         {
             _zebraLevel += 1;
             _zebraXp = 0;
             maxXpAmountZebra *= _multiplier;
         }
 
-        if (_penguinXp >= maxXpAmountSeaLion)
+        if (_penguinXp >= maxXpAmountSeaLion && _seaLionLevel <= 10)
         {
             _seaLionLevel += 1;
             _seaLionXp = 0;
             maxXpAmountSeaLion *= _multiplier;
         }
 
-        if (_turtleXp >= maxXpAmountTurtle)
+        if (_turtleXp >= maxXpAmountTurtle && _turtleLevel <= 10)
         {
             _turtleLevel += 1;
             _turtleXp = 0;
             maxXpAmountTurtle *= _multiplier;
         }
 
-        if (_monkeyXp >= maxXpAmountMonkey)
+        if (_monkeyXp >= maxXpAmountMonkey && _monkeyLevel <= 10)
         {
             _monkeyLevel += 1;
             _monkeyXp = 0;
             maxXpAmountMonkey *= _multiplier;
         }
 
-        if (_giraffeXp >= maxXpAmountGiraffe)
+        if (_giraffeXp >= maxXpAmountGiraffe && _giraffeLevel <= 10)
         {
             _giraffeLevel += 1;
             _giraffeXp = 0;
             maxXpAmountGiraffe *= _multiplier;
         }
 
-        if (_hippoXp >= maxXpAmountHippo)
+        if (_hippoXp >= maxXpAmountHippo && _hippoLevel <= 10)
         {
             _hippoLevel += 1;
             _hippoXp = 0;
             maxXpAmountHippo *= _multiplier;
         }
 
-        if (_lionXp >= maxXpAmountLion)
+        if (_lionXp >= maxXpAmountLion && _lionLevel <= 10)
         {
             _lionLevel += 1;
             _lionXp = 0;
@@ -162,27 +168,27 @@ public class ScoreTracker : Canvas
                 graphics.DrawString("Lion level = " + _lionLevel, _font, _fontColor, 630, 510);
             }
 
-            if (unlockedGiraffe)
+            if (lastAnimal == 3)
             {
                 graphics.DrawString("Giraffe level = " + _giraffeLevel, _font, _fontColor, 630, 560);
             }
 
-            if (unlockedZebra)
+            if (lastAnimal == 4)
             {
                 graphics.DrawString("Zebra level = " + _zebraLevel, _font, _fontColor, 970, 410);
             }
 
-            if (unlockedHippo)
+            if (lastAnimal == 5)
             {
                 graphics.DrawString("Hippo level = " + _hippoLevel, _font, _fontColor, 970, 460);
             }
 
-            if (unlockedSeaLion)
+            if (lastAnimal == 6)
             {
                 graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 970, 510);
             }
 
-            if (unlockedTurtle)
+            if (lastAnimal == 7)
             {
                 graphics.DrawString("Turtle level = " + _turtleLevel, _font, _fontColor, 970, 560);
             }

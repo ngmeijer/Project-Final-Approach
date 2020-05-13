@@ -65,8 +65,8 @@ public class HUD : Canvas
 
         _interactionMenuButton = new Sprite("InteractionMenuButton.png");
         AddChild(_interactionMenuButton);
-        _interactionMenuButton.x = game.width - 100;
-        _interactionMenuButton.y = 20;
+        _interactionMenuButton.x = game.width - 120;
+        _interactionMenuButton.y = 10;
 
         _cleanIcon = new Sprite("CleanIcon.png");
         AddChild(_cleanIcon);

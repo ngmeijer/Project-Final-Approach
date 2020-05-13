@@ -6,7 +6,6 @@ public class Environment : GameObject
 {
     public bool canClickOnResidence { get; set; }
 
-
     public Sprite HubBackground { get; private set; }
     public Sprite _penguin { get; private set; }
     public Sprite _zebra { get; private set; }
@@ -43,45 +42,58 @@ public class Environment : GameObject
         HubBackground = new Sprite("HubNoAnimals.png");
         AddChild(HubBackground);
 
-        _zebra = new Sprite("HubZebra.png");
-        AddChild(_zebra);
-        _zebra.SetXY(game.width / 2 - 950, 450);
-
-        _giraffe = new Sprite("HubGiraffe.png");
-        AddChild(_giraffe);
-        _giraffe.SetXY(game.width / 2 - 950, 0);
-
-        _lion = new Sprite("HubLion.png");
-        AddChild(_lion);
-        _lion.SetXY(game.width / 2 - 600, 750);
-
-        _hippo = new Sprite("HubHippo.png");
-        AddChild(_hippo);
-        _hippo.SetXY(game.width / 2 - 400, 100);
+        _penguin = new Sprite("HubPenguin.png");
+        AddChild(_penguin);
+        _penguin.SetXY(game.width / 2 + 550, 520);
 
         _monkey = new Sprite("HubMonkey.png");
         AddChild(_monkey);
         _monkey.SetXY(game.width / 2, -20);
 
+        _giraffe = new Sprite("HubGiraffe.png");
+        AddChild(_giraffe);
+        _giraffe.SetXY(game.width / 2 - 950, 0);
+        _giraffe.visible = false;
+
+        _lion = new Sprite("HubLion.png");
+        AddChild(_lion);
+        _lion.SetXY(game.width / 2 - 600, 750);
+
+        _zebra = new Sprite("HubZebra.png");
+        AddChild(_zebra);
+        _zebra.SetXY(game.width / 2 - 950, 450);
+        _zebra.visible = false;
+
+        _hippo = new Sprite("HubHippo.png");
+        AddChild(_hippo);
+        _hippo.SetXY(game.width / 2 - 400, 100);
+        _hippo.visible = false;
+
         _seaLion = new Sprite("HubSeaLion.png");
         AddChild(_seaLion);
         _seaLion.SetXY(game.width / 2 + 400, 200);
-
-        _penguin = new Sprite("HubPenguin.png");
-        AddChild(_penguin);
-        _penguin.SetXY(game.width / 2 + 550, 520);
+        _seaLion.visible = false;
 
         _turtle = new Sprite("HubTurtle.png");
         AddChild(_turtle);
         _turtle.SetXY(game.width / 2 + 250, 760);
+        _turtle.visible = false;
 
-        animals.Add(_lion);
-        animals.Add(_giraffe);
-        animals.Add(_zebra);
-        animals.Add(_hippo);
-        animals.Add(_monkey);
-        animals.Add(_seaLion);
+        //0
         animals.Add(_penguin);
+        //1
+        animals.Add(_monkey);
+        //2
+        animals.Add(_giraffe);
+        //3
+        animals.Add(_lion);
+        //4
+        animals.Add(_zebra);
+        //5
+        animals.Add(_hippo);
+        //6
+        animals.Add(_seaLion);
+        //7
         animals.Add(_turtle);
     }
 
@@ -113,74 +125,10 @@ public class Environment : GameObject
                 OnAnimalClicked(animal);
             }
         }
+    }
 
-        /*
-        if (canClickOnResidence)
-        {
-            if (_penguin.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedPenguin = true;
-                }
-            }
+    private void AddAnimalsToList()
+    {
 
-            if (_zebra.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedZebra = true;
-                }
-            }
-
-            if (_seaLion.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedSeaLion = true;
-                }
-            }
-
-            if (_turtle.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedTurtle = true;
-                }
-            }
-
-            if (_monkey.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedMonkey = true;
-                }
-            }
-
-            if (_lion.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedLion = true;
-                }
-            }
-
-            if (_giraffe.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedGiraffe = true;
-                }
-            }
-
-            if (_hippo.HitTestPoint(Input.mouseX, Input.mouseY))
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    clickedHippo = true;
-                }
-            }
-        }
-        */
     }
 }
