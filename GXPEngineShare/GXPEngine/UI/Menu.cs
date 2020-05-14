@@ -29,7 +29,7 @@ public class Menu : GameObject
         _startButton = new StartButton();
         AddChild(_startButton);
         _startButton.x = (game.width / 2) - (_startButton.width / 2);
-        _startButton.y = 200;
+        _startButton.y = 750;
     }
 
     private void Update()

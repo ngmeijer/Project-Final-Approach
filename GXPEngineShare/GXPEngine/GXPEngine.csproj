@@ -87,6 +87,7 @@
     <Compile Include="Residence.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="ScoreTracker.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="UI\Menu.cs" />
     <Compile Include="UI\BackButton.cs" />
     <Compile Include="UI\StartButton.cs" />

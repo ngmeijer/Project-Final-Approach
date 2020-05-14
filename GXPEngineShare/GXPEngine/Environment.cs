@@ -16,6 +16,13 @@ public class Environment : GameObject
     public Sprite _giraffe { get; private set; }
     public Sprite _hippo { get; private set; }
 
+    public bool giraffeUnlocked { get; set; }
+    public bool zebraUnlocked { get; set; }
+    public bool hippoUnlocked { get; set; }
+    public bool seaLionUnlocked { get; set; }
+    public bool turtleUnlocked { get; set; }
+
+
     public bool clickedPenguin { get; set; }
     public bool clickedZebra { get; set; }
     public bool clickedSeaLion { get; set; }
@@ -100,6 +107,7 @@ public class Environment : GameObject
     private void Update()
     {
         ClickResidence();
+        UnlockAnimals();
     }
 
     /*
@@ -127,8 +135,31 @@ public class Environment : GameObject
         }
     }
 
-    private void AddAnimalsToList()
+    private void UnlockAnimals()
     {
+        if (giraffeUnlocked)
+        {
+            _giraffe.visible = true;
+        }
 
+        if (zebraUnlocked)
+        {
+            _zebra.visible = true;
+        }
+
+        if (hippoUnlocked)
+        {
+            _hippo.visible = true;
+        }
+
+        if (seaLionUnlocked)
+        {
+            _seaLion.visible = true;
+        }
+
+        if (turtleUnlocked)
+        {
+            _turtle.visible = true;
+        }
     }
 }

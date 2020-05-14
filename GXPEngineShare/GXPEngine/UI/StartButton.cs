@@ -3,7 +3,7 @@ using GXPEngine;
 
 public class StartButton : Sprite
 {
-    public StartButton() : base("colors.png")
+    public StartButton() : base("StartButton.png")
     {
 
     }

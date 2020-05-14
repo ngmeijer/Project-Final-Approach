@@ -19,6 +19,8 @@ public class HUD : Canvas
     public Sprite _continueButton;
     public Sprite _mileStonesButton;
     public Sprite _exitButton;
+    public Sprite _informationButton;
+    public Sprite _informationBackground;
 
     public int _penguinLevel;
     public int _penguinCurrentXp;
@@ -63,6 +65,17 @@ public class HUD : Canvas
         _lowerButton.x = 560;
         _lowerButton.y = 966;
 
+        _informationButton = new Sprite("Information.png");
+        AddChild(_informationButton);
+        _informationButton.x = 10;
+        _informationButton.y = 10;
+
+        _informationBackground = new Sprite("InformationBackground.png");
+        AddChild(_informationBackground);
+        _informationBackground.x = game.width / 2 - _informationBackground.width / 2;
+        _informationBackground.y = game.height / 2 - _informationBackground.height / 2;
+        _informationBackground.visible = false;
+
         _interactionMenuButton = new Sprite("InteractionMenuButton.png");
         AddChild(_interactionMenuButton);
         _interactionMenuButton.x = game.width - 120;
@@ -96,8 +109,8 @@ public class HUD : Canvas
         //Options menu
         _optionsButton = new Sprite("OptionsButton.png");
         AddChild(_optionsButton);
-        _optionsButton.x = game.width - 100;
-        _optionsButton.y = 20;
+        _optionsButton.x = game.width - 120;
+        _optionsButton.y = 10;
 
         _optionsBackground = new Sprite("OptionsBackground.png");
         AddChild(_optionsBackground);
@@ -126,6 +139,7 @@ public class HUD : Canvas
         CheckForAnimalSwitching();
         CheckForOptionsRequest();
         ShowInteractionMenu();
+        ShowInformationMenu();
         InteractWithAnimal();
     }
 
@@ -138,6 +152,8 @@ public class HUD : Canvas
             _leftButton.visible = true;
 
             _interactionMenuButton.visible = true;
+
+            _informationButton.visible = true;
 
             if (_lowerButton.HitTestPoint(Input.mouseX, Input.mouseY))
             {
@@ -171,6 +187,8 @@ public class HUD : Canvas
             _leftButton.visible = false;
 
             _interactionMenuButton.visible = false;
+
+            _informationButton.visible = false;
         }
     }
 
@@ -256,6 +274,14 @@ public class HUD : Canvas
             {
                 showInteractionMenu = false;
             }
+        }
+    }
+
+    private void ShowInformationMenu()
+    {
+        if(_informationButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            _informationBackground.visible = true;
         }
     }
 

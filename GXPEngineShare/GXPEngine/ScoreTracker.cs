@@ -1,6 +1,5 @@
-﻿using System;
+﻿using GXPEngine;
 using System.Drawing;
-using GXPEngine;
 
 public class ScoreTracker : Canvas
 {
@@ -10,50 +9,50 @@ public class ScoreTracker : Canvas
 
     //////////////
     ///
-    public int _penguinLevel { get; set; } = 0;
-    public int _penguinXp { get; set; } = 0;
+    public int penguinLevel { get; set; } = 0;
+    public int penguinXp { get; set; } = 0;
     private float maxXpAmountPenguin = 150;
     ///
-    
+
     ///
-    public int _zebraLevel { get; set; } = 0;
-    public int _zebraXp { get; set; } = 0;
+    public int zebraLevel { get; set; } = 0;
+    public int zebraXp { get; set; } = 0;
     private float maxXpAmountZebra = 150;
     ///
-   
+
     ///
     public int _seaLionLevel { get; set; } = 0;
-    public int _seaLionXp { get; set; } = 0;
+    public int seaLionXp { get; set; } = 0;
     private float maxXpAmountSeaLion = 150;
     ///
 
     ///
     public int _turtleLevel { get; set; } = 0;
-    public int _turtleXp { get; set; } = 0;
+    public int turtleXp { get; set; } = 0;
     private float maxXpAmountTurtle = 150;
     ///
 
     ///
     public int _monkeyLevel { get; set; } = 0;
-    public int _monkeyXp { get; set; } = 0;
+    public int monkeyXp { get; set; } = 0;
     private float maxXpAmountMonkey = 150;
     ///
 
     ///
-    public int _lionLevel { get; set; } = 0;
-    public int _lionXp { get; set; } = 0;
+    public int lionLevel { get; set; } = 0;
+    public int lionXp { get; set; } = 0;
     private float maxXpAmountLion = 150;
     ///
 
     ///
-    public int _giraffeLevel { get; set; } = 0;
-    public int _giraffeXp { get; set; } = 0;
+    public int giraffeLevel { get; set; } = 0;
+    public int giraffeXp { get; set; } = 0;
     private float maxXpAmountGiraffe = 150;
     ///
 
     ///
-    public int _hippoLevel { get; set; } = 0;
-    public int _hippoXp { get; set; } = 0;
+    public int hippoLevel { get; set; } = 0;
+    public int hippoXp { get; set; } = 0;
     private float maxXpAmountHippo = 150;
     /////////////
 
@@ -70,6 +69,8 @@ public class ScoreTracker : Canvas
     public bool showAnimalStats { get; set; }
 
     public int lastAnimal { get; set; } = 2;
+
+    public int animalsUnlocked { get; set; } = 3;
 
     private readonly Brush _fontColor;
     private readonly Font _font;
@@ -93,69 +94,105 @@ public class ScoreTracker : Canvas
         
         #region
 
-        if (_penguinXp >= maxXpAmountPenguin)
+        if (penguinXp >= maxXpAmountPenguin && penguinLevel < 10)
         {
-            _penguinLevel += 1;
-            _penguinXp = 0;
+            penguinLevel += 1;
+            penguinXp = 0;
             maxXpAmountPenguin *= _multiplier;
         }
 
-        if (_zebraXp >= maxXpAmountZebra && _zebraLevel <= 10)
+        if (zebraXp >= maxXpAmountZebra && zebraLevel < 10)
         {
-            _zebraLevel += 1;
-            _zebraXp = 0;
+            zebraLevel += 1;
+            zebraXp = 0;
             maxXpAmountZebra *= _multiplier;
         }
 
-        if (_penguinXp >= maxXpAmountSeaLion && _seaLionLevel <= 10)
+        if (seaLionXp >= maxXpAmountSeaLion && _seaLionLevel < 10)
         {
             _seaLionLevel += 1;
-            _seaLionXp = 0;
+            seaLionXp = 0;
             maxXpAmountSeaLion *= _multiplier;
         }
 
-        if (_turtleXp >= maxXpAmountTurtle && _turtleLevel <= 10)
+        if (turtleXp >= maxXpAmountTurtle && _turtleLevel < 10)
         {
             _turtleLevel += 1;
-            _turtleXp = 0;
+            turtleXp = 0;
             maxXpAmountTurtle *= _multiplier;
         }
 
-        if (_monkeyXp >= maxXpAmountMonkey && _monkeyLevel <= 10)
+        if (monkeyXp >= maxXpAmountMonkey && _monkeyLevel < 10)
         {
             _monkeyLevel += 1;
-            _monkeyXp = 0;
+            monkeyXp = 0;
             maxXpAmountMonkey *= _multiplier;
         }
 
-        if (_giraffeXp >= maxXpAmountGiraffe && _giraffeLevel <= 10)
+        if (giraffeXp >= maxXpAmountGiraffe && giraffeLevel < 10)
         {
-            _giraffeLevel += 1;
-            _giraffeXp = 0;
+            giraffeLevel += 1;
+            giraffeXp = 0;
             maxXpAmountGiraffe *= _multiplier;
         }
 
-        if (_hippoXp >= maxXpAmountHippo && _hippoLevel <= 10)
+        if (hippoXp >= maxXpAmountHippo && hippoLevel < 10)
         {
-            _hippoLevel += 1;
-            _hippoXp = 0;
+            hippoLevel += 1;
+            hippoXp = 0;
             maxXpAmountHippo *= _multiplier;
         }
 
-        if (_lionXp >= maxXpAmountLion && _lionLevel <= 10)
+        if (lionXp >= maxXpAmountLion && lionLevel < 10)
         {
-            _lionLevel += 1;
-            _lionXp = 0;
+            lionLevel += 1;
+            lionXp = 0;
             maxXpAmountLion *= _multiplier;
+        }
+
+        //////////////
+        if (lionLevel >= 1 && _monkeyLevel >= 1 && penguinLevel >= 1)
+        {
+            unlockedGiraffe = true;
+        }
+
+        if (lionLevel >= 2 && _monkeyLevel >= 2 && penguinLevel >= 2 
+            && giraffeLevel >= 2)
+        {
+            unlockedZebra = true;
+        }
+
+        if (lionLevel >= 3 && _monkeyLevel >= 3 && penguinLevel >= 3 
+            && giraffeLevel >= 3 && zebraLevel >= 3)
+        {
+            unlockedHippo = true;
+        }
+
+        if (lionLevel >= 4 && _monkeyLevel >= 4 && penguinLevel >= 4
+            && giraffeLevel >= 4 && zebraLevel >= 4 && hippoLevel >= 4)
+        {
+            unlockedSeaLion = true;
+        }
+
+        if (lionLevel >= 5 && _monkeyLevel >= 5 && penguinLevel >= 5
+            && giraffeLevel >= 5 && zebraLevel >= 5 
+            && hippoLevel >= 5 && _seaLionLevel >= 5)
+        {
+            unlockedTurtle = true;
         }
 
         #endregion
 
         if (showAnimalStats && clickedOptions)
         {
+            if (unlockedLion)
+            {
+                graphics.DrawString("Lion level = " + lionLevel, _font, _fontColor, 630, 510);
+            }
+
             if (unlockedPenguin)
             {
-                graphics.DrawString("Penguin level = " + _penguinLevel, _font, _fontColor, 630, 410);
+                graphics.DrawString("Penguin level = " + penguinLevel, _font, _fontColor, 630, 410);
             }
 
             if (unlockedMonkey)
@@ -163,32 +200,28 @@ public class ScoreTracker : Canvas
                 graphics.DrawString("Monkey level = " + _monkeyLevel, _font, _fontColor, 630, 460);
             }
 
-            if (unlockedLion)
+            if (unlockedGiraffe)
             {
-                graphics.DrawString("Lion level = " + _lionLevel, _font, _fontColor, 630, 510);
+                animalsUnlocked = 4;
+                graphics.DrawString("Giraffe level = " + giraffeLevel, _font, _fontColor, 630, 560);
             }
 
-            if (lastAnimal == 3)
+            if (unlockedZebra)
             {
-                graphics.DrawString("Giraffe level = " + _giraffeLevel, _font, _fontColor, 630, 560);
+                graphics.DrawString("Zebra level = " + zebraLevel, _font, _fontColor, 970, 410);
             }
 
-            if (lastAnimal == 4)
+            if (unlockedHippo)
             {
-                graphics.DrawString("Zebra level = " + _zebraLevel, _font, _fontColor, 970, 410);
+                graphics.DrawString("Hippo level = " + hippoLevel, _font, _fontColor, 970, 460);
             }
 
-            if (lastAnimal == 5)
-            {
-                graphics.DrawString("Hippo level = " + _hippoLevel, _font, _fontColor, 970, 460);
-            }
-
-            if (lastAnimal == 6)
+            if (unlockedSeaLion)
             {
                 graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 970, 510);
             }
 
-            if (lastAnimal == 7)
+            if (unlockedTurtle)
             {
                 graphics.DrawString("Turtle level = " + _turtleLevel, _font, _fontColor, 970, 560);
             }
