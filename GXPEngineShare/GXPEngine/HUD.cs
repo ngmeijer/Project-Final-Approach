@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using GXPEngine;
-using TiledMapParser;
 
 public class HUD : Canvas
 {
@@ -15,12 +14,21 @@ public class HUD : Canvas
     public Sprite _petIcon;
 
     public Sprite _optionsButton;
-    public Sprite _optionsBackground;
+    public OptionsMenu _optionsBackground;
     public Sprite _continueButton;
     public Sprite _mileStonesButton;
     public Sprite _exitButton;
     public Sprite _informationButton;
     public Sprite _informationBackground;
+
+    public bool penguinActive;
+    public bool monkeyActive;
+    public bool giraffeActive;
+    public bool lionActive;
+    public bool zebraActive;
+    public bool hippoActive;
+    public bool seaLionActive;
+    public bool turtleActive;
 
     public int _penguinLevel;
     public int _penguinCurrentXp;
@@ -39,6 +47,12 @@ public class HUD : Canvas
     public bool feeding { get; set; }
 
     public int currentXpAmount = 0;
+    private bool showInformationMenu;
+    public int lionLevel = 0;
+
+    private Brush _fontColor;
+    private Font _font;
+
     public bool showAnimalStats { get; set; }
 
     public bool showInteractionMenu { get; set; }
@@ -46,6 +60,11 @@ public class HUD : Canvas
     public bool environmentActive { get; set; }
 
     public bool residenceActive { get; set; }
+
+    /////////Tips
+    EasyDraw lionTip1 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip2 = new EasyDraw(1920, 1080);
+
 
     public HUD() : base(1920, 1080, false)
     {
@@ -67,11 +86,12 @@ public class HUD : Canvas
 
         _informationButton = new Sprite("Information.png");
         AddChild(_informationButton);
-        _informationButton.x = 10;
-        _informationButton.y = 10;
+        _informationButton.x = 20;
+        _informationButton.y = -22;
 
         _informationBackground = new Sprite("InformationBackground.png");
         AddChild(_informationBackground);
+        _informationBackground.scale = 1.3f;
         _informationBackground.x = game.width / 2 - _informationBackground.width / 2;
         _informationBackground.y = game.height / 2 - _informationBackground.height / 2;
         _informationBackground.visible = false;
@@ -112,12 +132,11 @@ public class HUD : Canvas
         _optionsButton.x = game.width - 120;
         _optionsButton.y = 10;
 
-        _optionsBackground = new Sprite("OptionsBackground.png");
+        _optionsBackground = new OptionsMenu();
         AddChild(_optionsBackground);
         _optionsBackground.x = game.width / 2 - _optionsBackground.width / 2;
         _optionsBackground.y = game.height / 2 - _optionsBackground.height / 2;
         _optionsBackground.visible = false;
-        SetChildIndex(_optionsBackground, 3);
 
         _continueButton = new Sprite("ContinueButton.png");
         AddChild(_continueButton);
@@ -131,6 +150,14 @@ public class HUD : Canvas
         _exitButton.y = game.height / 2 - _exitButton.height / 2 + 340;
         _exitButton.visible = false;
         ///////////////
+
+        _fontColor = Brushes.White;
+        _font = new Font("Arial", 30);
+
+        //////////
+        /////Tips
+        AddChild(lionTip1);
+        AddChild(lionTip2);
     }
 
     private void Update()
@@ -187,6 +214,10 @@ public class HUD : Canvas
             _leftButton.visible = false;
 
             _interactionMenuButton.visible = false;
+            _cleanIcon.visible = false;
+            _petIcon.visible = false;
+            _meatIcon.visible = false;
+            _veggieIcon.visible = false;
 
             _informationButton.visible = false;
         }
@@ -205,9 +236,10 @@ public class HUD : Canvas
 
             if (clickedOptions)
             {
-                //_optionsBackground.visible = true;
+                _optionsBackground.visible = true;
                 _continueButton.visible = true;
                 _exitButton.visible = true;
+                showAnimalStats = true;
             }
             else if (!clickedOptions)
             {
@@ -222,9 +254,12 @@ public class HUD : Canvas
                 showAnimalStats = false;
             }
 
-            if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+            if (_optionsBackground.visible)
             {
-                MyGame.main.Destroy();
+                if (_exitButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+                {
+                    MyGame.main.Destroy();
+                }
             }
         }
 
@@ -265,12 +300,14 @@ public class HUD : Canvas
                 _petIcon.visible = false;
             }
 
-            if (_interactionMenuButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0) && !showInteractionMenu)
+            if (_interactionMenuButton.HitTestPoint(Input.mouseX, Input.mouseY)
+                && Input.GetMouseButtonDown(0) && !showInteractionMenu)
             {
                 showInteractionMenu = true;
             }
 
-            if (!_interactionMenuButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0) && showInteractionMenu)
+            if (!_interactionMenuButton.HitTestPoint(Input.mouseX, Input.mouseY)
+                && Input.GetMouseButtonDown(0) && showInformationMenu)
             {
                 showInteractionMenu = false;
             }
@@ -279,9 +316,50 @@ public class HUD : Canvas
 
     private void ShowInformationMenu()
     {
-        if(_informationButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        if (_informationButton.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0))
+        {
+            showInformationMenu = true;
+        }
+
+        if (!(_informationButton.HitTestPoint(Input.mouseX, Input.mouseY)
+            || _informationBackground.HitTestPoint(Input.mouseX, Input.mouseY))
+            && Input.GetMouseButtonDown(0) && showInformationMenu)
+        {
+            showInformationMenu = false;
+        }
+
+        if (showInformationMenu)
         {
             _informationBackground.visible = true;
+        }
+
+        if (!showInformationMenu)
+        {
+            _informationBackground.visible = false;
+        }
+
+        if (showInformationMenu)
+        {
+            if (lionActive && lionLevel == 0)
+            {
+                lionTip1.graphics.DrawString("Lions are cat-like animals", _font, _fontColor, game.width / 2 - 225, game.height / 2);
+            }
+
+            if (lionActive && lionLevel == 1)
+            {
+                lionTip1.graphics.Clear(Color.Transparent);
+                lionTip2.graphics.DrawString("Lions are carnivores", _font, _fontColor, game.width / 2 - 200, game.height / 2);
+            }
+
+            if (lionActive && lionLevel == 2)
+            {
+
+            }
+        }
+        else
+        {
+            lionTip1.graphics.Clear(Color.Transparent);
+            lionTip2.graphics.Clear(Color.Transparent);
         }
     }
 
@@ -292,7 +370,7 @@ public class HUD : Canvas
             cleaning = true;
         }
 
-        if ((_meatIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0)) || 
+        if ((_meatIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0)) ||
             (_veggieIcon.HitTestPoint(Input.mouseX, Input.mouseY) && Input.GetMouseButtonDown(0)))
         {
             feeding = true;

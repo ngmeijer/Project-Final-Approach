@@ -84,6 +84,7 @@
     <Compile Include="GXPEngine\FMOD\FMODSoundSystem.cs" />
     <Compile Include="GXPEngine\SoLoud\Soloud.cs" />
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
+    <Compile Include="OptionsMenu.cs" />
     <Compile Include="Residence.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="ScoreTracker.cs" />

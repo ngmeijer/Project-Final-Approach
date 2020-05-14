@@ -1,4 +1,5 @@
 ﻿using GXPEngine;
+using System;
 using System.Drawing;
 
 public class ScoreTracker : Canvas
@@ -68,12 +69,12 @@ public class ScoreTracker : Canvas
 
     public bool showAnimalStats { get; set; }
 
-    public int lastAnimal { get; set; } = 2;
-
-    public int animalsUnlocked { get; set; } = 3;
-
     private readonly Brush _fontColor;
     private readonly Font _font;
+
+    EasyDraw lionLevelText = new EasyDraw(1920, 1080);
+    EasyDraw penguinLevelText = new EasyDraw(1920, 1080);
+    EasyDraw monkeyLevelText = new EasyDraw(1920, 1080);
 
     #endregion
 
@@ -81,6 +82,10 @@ public class ScoreTracker : Canvas
     {
         _fontColor = Brushes.White;
         _font = new Font("Arial", 30);
+
+        AddChild(lionLevelText);
+        AddChild(penguinLevelText);
+        AddChild(monkeyLevelText);
     }
 
     private void Update()
@@ -182,63 +187,5 @@ public class ScoreTracker : Canvas
         }
 
         #endregion
-
-        if (showAnimalStats && clickedOptions)
-        {
-            if (unlockedLion)
-            {
-                graphics.DrawString("Lion level = " + lionLevel, _font, _fontColor, 630, 510);
-            }
-
-            if (unlockedPenguin)
-            {
-                graphics.DrawString("Penguin level = " + penguinLevel, _font, _fontColor, 630, 410);
-            }
-
-            if (unlockedMonkey)
-            {
-                graphics.DrawString("Monkey level = " + _monkeyLevel, _font, _fontColor, 630, 460);
-            }
-
-            if (unlockedGiraffe)
-            {
-                animalsUnlocked = 4;
-                graphics.DrawString("Giraffe level = " + giraffeLevel, _font, _fontColor, 630, 560);
-            }
-
-            if (unlockedZebra)
-            {
-                graphics.DrawString("Zebra level = " + zebraLevel, _font, _fontColor, 970, 410);
-            }
-
-            if (unlockedHippo)
-            {
-                graphics.DrawString("Hippo level = " + hippoLevel, _font, _fontColor, 970, 460);
-            }
-
-            if (unlockedSeaLion)
-            {
-                graphics.DrawString("Sea Lion level = " + _seaLionLevel, _font, _fontColor, 970, 510);
-            }
-
-            if (unlockedTurtle)
-            {
-                graphics.DrawString("Turtle level = " + _turtleLevel, _font, _fontColor, 970, 560);
-            }
-        }
-        else
-        {
-            graphics.Clear(Color.Empty);
-        }
     }
-
-    //private void IncreaseXP(float xp, float maxXpAmount, int animalLevel)
-    //{
-    //    if (xp >= maxXpAmount)
-    //    {
-    //        animalLevel += 1;
-    //        xp = 0;
-    //        maxXpAmount *= _multiplier;
-    //    }
-    //}
 }

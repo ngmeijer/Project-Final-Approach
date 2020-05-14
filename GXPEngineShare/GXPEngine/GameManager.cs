@@ -17,9 +17,9 @@ public class GameManager : GameObject
     public bool residenceActive;
     public bool environmentActive;
 
-    private int feedingXp = 15;
+    private int feedingXp = 50;
     private int cleaningXp = 50;
-    private int pettingXp = 25;
+    private int pettingXp = 50;
 
     public int currentAnimal { get; set; }
     private int lastAnimal = 2;
@@ -27,6 +27,7 @@ public class GameManager : GameObject
     private bool feedingLion;
     private bool cleaningLion;
     private bool pettingLion;
+
     private bool feedingMonkey;
     private bool pettingMonkey;
     private bool cleaningMonkey;
@@ -55,6 +56,7 @@ public class GameManager : GameObject
 
         scoreTracker = new ScoreTracker();
         AddChild(scoreTracker);
+        SetChildIndex(scoreTracker, 200000);
     }
 
     private void Update()
@@ -67,6 +69,7 @@ public class GameManager : GameObject
         CheckAnimalLevelProgress();
         HandleAnimalAnimations();
         HandleSounds();
+        SendDataToOptionsMenu();
     }
     private void onAnimalClicked(Sprite pSprite)
     {
@@ -172,10 +175,9 @@ public class GameManager : GameObject
             environment.canClickOnResidence = true;
         }
 
-
         if (_gameHUD.clickedBack)
         {
-            turnOffAllAnimals();
+            TurnOffAllAnimals();
             environment.visible = true;
 
             _gameHUD.clickedBack = false;
@@ -565,34 +567,39 @@ public class GameManager : GameObject
         {
             lastAnimal = 3;
             environment.giraffeUnlocked = true;
+            _gameHUD._optionsBackground.giraffeUnlocked = true;
         }
 
         if (scoreTracker.unlockedZebra)
         {
             lastAnimal = 4;
             environment.zebraUnlocked = true;
+            _gameHUD._optionsBackground.zebraUnlocked = true;
         }
 
         if (scoreTracker.unlockedHippo)
         {
             lastAnimal = 5;
             environment.hippoUnlocked = true;
+            _gameHUD._optionsBackground.hippoUnlocked = true;
         }
 
         if (scoreTracker.unlockedSeaLion)
         {
             lastAnimal = 6;
             environment.seaLionUnlocked = true;
+            _gameHUD._optionsBackground.seaLionUnlocked = true;
         }
 
         if (scoreTracker.unlockedTurtle)
         {
             lastAnimal = 7;
             environment.turtleUnlocked = true;
+            _gameHUD._optionsBackground.turtleUnlocked = true;
         }
     }
 
-    private void turnOffAllAnimals()
+    private void TurnOffAllAnimals()
     {
         environment.clickedPenguin = false;
         environment.clickedZebra = false;
@@ -671,5 +678,19 @@ public class GameManager : GameObject
             Console.WriteLine("playing sound");
             soundManager.cleanSound.Play(false, 1, 1);
         }
+    }
+
+    private void SendDataToOptionsMenu()
+    {
+        _gameHUD._optionsBackground.penguinLevel = scoreTracker.penguinLevel;
+        _gameHUD._optionsBackground.lionLevel = scoreTracker.lionLevel;
+        _gameHUD._optionsBackground._monkeyLevel = scoreTracker._monkeyLevel;
+        _gameHUD._optionsBackground.giraffeLevel = scoreTracker.giraffeLevel;
+        _gameHUD._optionsBackground.zebraLevel = scoreTracker.zebraLevel;
+        _gameHUD._optionsBackground.hippoLevel = scoreTracker.hippoLevel;
+        _gameHUD._optionsBackground._seaLionLevel = scoreTracker._seaLionLevel;
+        _gameHUD._optionsBackground._turtleLevel = scoreTracker._turtleLevel;
+
+        Console.WriteLine(_gameHUD._optionsBackground.lionLevel);
     }
 }

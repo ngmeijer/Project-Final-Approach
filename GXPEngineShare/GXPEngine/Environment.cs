@@ -128,7 +128,7 @@ public class Environment : GameObject
 
         foreach (Sprite animal in animals)
         {
-            if (animal.HitTestPoint(Input.mouseX, Input.mouseY))
+            if (animal.HitTestPoint(Input.mouseX, Input.mouseY) && animal.visible)
             {
                 OnAnimalClicked(animal);
             }

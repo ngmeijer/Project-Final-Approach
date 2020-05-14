@@ -120,11 +120,11 @@ public class Residence : GameObject
 
         _lion = new Lion();
         AddChild(_lion);
-        _lion.x = game.width / 2 + 150;
-        _lion.y = 250;
+        _lion.x = game.width / 2 - 150;
+        _lion.y = 100;
         lionActive = false;
         _lion.visible = false;
-        _lion.scale = 0.5f;
+        _lion.scale = 0.8f;
         //
 
         //Giraffe residence
