@@ -21,6 +21,12 @@ public class Residence : GameObject
     public Sprite _lionBackground { get; set; }
     public Sprite _hippoBackground { get; set; }
 
+    public Sprite _giraffeFence;
+    public Sprite _monkeyFence;
+    public Sprite _penguinFence;
+    public Sprite _hippoFence;
+    public Sprite _zebraFence;
+
     //Checks if the animal is CURRENTLY active
     public bool penguinActive { get; set; }
     public bool zebraActive;
@@ -35,7 +41,7 @@ public class Residence : GameObject
     public bool unlockedPenguin { get; set; } = true;
     public bool unlockedTurtle { get; set; }
     public bool unlockedSeaLion { get; set; }
-    public bool unlockedZebra { get; set; } = false;
+    public bool unlockedZebra { get; set; }
     public bool unlockedMonkey { get; set; } = true;
     public bool unlockedLion { get; set; } = true;
     public bool unlockedGiraffe { get; set; }
@@ -51,10 +57,13 @@ public class Residence : GameObject
         _penguin = new Penguin();
         AddChild(_penguin);
         _penguin.x = game.width / 2;
-        _penguin.y = 200;
+        _penguin.y = 164;
         penguinActive = false;
         _penguin.visible = false;
-        _penguin.scale = 0.9f;
+
+        _penguinFence = new Sprite("ArcticFence.png");
+        AddChild(_penguinFence);
+        _penguinFence.visible = false;
         //
 
         //Zebra residence
@@ -64,11 +73,15 @@ public class Residence : GameObject
 
         _zebra = new Zebra();
         AddChild(_zebra);
-        _zebra.x = game.width / 2 - 115;
-        _zebra.y = 170;
+        _zebra.x = game.width / 2 - 160;
+        _zebra.y = 317;
         zebraActive = false;
         _zebra.visible = false;
         _zebra.scale = 1f;
+
+        _zebraFence = new Sprite("JungleFence.png");
+        AddChild(_zebraFence);
+        _zebraFence.visible = false;
         //
 
         //Sea lion residence
@@ -107,10 +120,14 @@ public class Residence : GameObject
         _monkey = new Monkey();
         AddChild(_monkey);
         _monkey.x = game.width / 2 - 635;
-        _monkey.y = 265;
+        _monkey.y = 285;
         monkeyActive = false;
         _monkey.visible = false;
         _monkey.scale = 1.1f;
+
+        _monkeyFence = new Sprite("JungleFence.png");
+        AddChild(_monkeyFence);
+        _monkeyFence.visible = false;
         //
 
         //Lion residence
@@ -120,8 +137,8 @@ public class Residence : GameObject
 
         _lion = new Lion();
         AddChild(_lion);
-        _lion.x = game.width / 2 - 150;
-        _lion.y = 100;
+        _lion.x = game.width / 2 - 50;
+        _lion.y = 50;
         lionActive = false;
         _lion.visible = false;
         _lion.scale = 0.8f;
@@ -134,11 +151,14 @@ public class Residence : GameObject
 
         _giraffe = new Giraffe();
         AddChild(_giraffe);
-        _giraffe.x = game.width / 2;
-        _giraffe.y = 180;
+        _giraffe.x = game.width / 2 - 165;
+        _giraffe.y = 155;
         giraffeActive = false;
         _giraffe.visible = false;
-        _giraffe.scale = 1.2f;
+
+        _giraffeFence = new Sprite("JungleFence.png");
+        AddChild(_giraffeFence);
+        _giraffeFence.visible = false;
 
         //Hippo residence
         _hippoBackground = new Sprite("HippoBackground.png");
@@ -147,11 +167,15 @@ public class Residence : GameObject
 
         _hippo = new Hippo();
         AddChild(_hippo);
-        _hippo.x = game.width / 2 - 300;
+        _hippo.x = game.width / 2 - 350;
         _hippo.y = 370;
         hippoActive = false;
         _hippo.visible = false;
         _hippo.scale = 0.5f;
+
+        _hippoFence = new Sprite("JungleFence.png");
+        AddChild(_hippoFence);
+        _hippoFence.visible = false;
         //
     }
 
@@ -164,23 +188,27 @@ public class Residence : GameObject
     {
         if (penguinActive)
         {
+            _penguinFence.visible = true;
             _penguinBackground.visible = true;
             _penguin.visible = true;
             unlockedPenguin = true;
         }
         else
         {
+            _penguinFence.visible = false;
             _penguinBackground.visible = false;
             _penguin.visible = false;
         }
 
         if (zebraActive)
         {
+            _zebraFence.visible = true;
             _zebraBackground.visible = true;
             _zebra.visible = true;
         }
         else
         {
+            _zebraFence.visible = false;
             _zebraBackground.visible = false;
             _zebra.visible = false;
         }
@@ -209,12 +237,14 @@ public class Residence : GameObject
 
         if (monkeyActive)
         {
+            _monkeyFence.visible = true;
             _monkeyBackground.visible = true;
             _monkey.visible = true;
             unlockedMonkey = true;
         }
         else
         {
+            _monkeyFence.visible = false;
             _monkeyBackground.visible = false;
             _monkey.visible = false;
         }
@@ -233,22 +263,26 @@ public class Residence : GameObject
 
         if (giraffeActive)
         {
+            _giraffeFence.visible = true;
             _giraffe.visible = true;
             _giraffeBackground.visible = true;
         }
         else
         {
+            _giraffeFence.visible = false;
             _giraffe.visible = false;
             _giraffeBackground.visible = false;
         }
 
         if (hippoActive)
         {
+            _hippoFence.visible = true;
             _hippoBackground.visible = true;
             _hippo.visible = true;
         }
         else
         {
+            _hippoFence.visible = false;
             _hippoBackground.visible = false;
             _hippo.visible = false;
         }
