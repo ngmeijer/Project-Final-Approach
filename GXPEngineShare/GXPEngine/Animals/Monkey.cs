@@ -14,7 +14,7 @@ public class Monkey : AnimationSprite
     private int _startFrameCleaning = 0;
     private int _endFrameCleaning = 14;
 
-    private int _animationSpeed = 350;
+    private int _animationSpeed = 290;
     private int _animationTimer;
 
     public Monkey() : base("MonkeySpriteSheet.png", 15, 4)

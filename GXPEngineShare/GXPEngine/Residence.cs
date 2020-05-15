@@ -106,11 +106,11 @@ public class Residence : GameObject
 
         _monkey = new Monkey();
         AddChild(_monkey);
-        _monkey.x = game.width / 2 - 620;
-        _monkey.y = 277;
+        _monkey.x = game.width / 2 - 635;
+        _monkey.y = 265;
         monkeyActive = false;
         _monkey.visible = false;
-        _monkey.scale = 0.7f;
+        _monkey.scale = 1.1f;
         //
 
         //Lion residence

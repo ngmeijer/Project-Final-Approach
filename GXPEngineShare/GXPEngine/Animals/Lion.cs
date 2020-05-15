@@ -8,11 +8,8 @@ public class Lion : AnimationSprite
     public bool cleaning { get; set; }
     private bool idle;
 
-    private int _animationSpeed = 350;
+    private int _animationSpeed = 290;
     private int _animationTimer;
-
-    private int _prevStartFrame;
-    private int _step;
 
     public Lion() : base("LionSpriteSheet.png", 14, 4)
     {

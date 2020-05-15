@@ -16,35 +16,14 @@ public class OptionsMenu : Sprite
     private readonly Font _font;
 
     public int penguinLevel { get; set; } = 0;
-    ///
-
-    ///
     public int zebraLevel { get; set; } = 0;
-    ///
-
-    ///
     public int _seaLionLevel { get; set; } = 0;
-    ///
-
-    ///
     public int _turtleLevel { get; set; } = 0;
-    ///
-
-    ///
     public int _monkeyLevel { get; set; } = 0;
-    ///
-
-    ///
     public int lionLevel { get; set; } = 0;
-    ///
-
-    ///
     public int giraffeLevel { get; set; } = 0;
-    ///
-
-    ///
     public int hippoLevel { get; set; } = 0;
-    ///
+
     public bool giraffeUnlocked { get; set; }
     public bool zebraUnlocked { get; set; }
     public bool hippoUnlocked { get; set; }
