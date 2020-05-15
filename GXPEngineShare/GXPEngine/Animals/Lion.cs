@@ -11,7 +11,7 @@ public class Lion : AnimationSprite
     private int _animationSpeed = 290;
     private int _animationTimer;
 
-    public Lion() : base("LionSpriteSheet.png", 14, 4)
+    public Lion() : base("LionSpriteSheet.png", 15, 4)
     {
 
     }
@@ -26,11 +26,11 @@ public class Lion : AnimationSprite
         if (cleaning)
         {
             _animationTimer += Time.deltaTime;
-            int frame = (int)(_animationTimer / _animationSpeed) % 14 + 0;
+            int frame = (int)(_animationTimer / _animationSpeed) % 15 + 0;
 
             SetFrame(frame);
 
-            if (frame >= 13)
+            if (frame >= 14)
             {
                 cleaning = false;
             }
@@ -43,7 +43,7 @@ public class Lion : AnimationSprite
 
             SetFrame(frame);
 
-            if (frame >= 23)
+            if (frame >= 24)
             {
                 feeding = false;
             }
@@ -51,13 +51,11 @@ public class Lion : AnimationSprite
 
         if (petting)
         {
-            cleaning = false;
-
             _animationTimer += Time.deltaTime;
-            int frame = (int)(_animationTimer / _animationSpeed) % 8 + 28;
+            int frame = (int)(_animationTimer / _animationSpeed) % 8 + 29;
             SetFrame(frame);
 
-            if (frame >= 35)
+            if (frame >= 37)
             {
                 petting = false;
             }
@@ -66,7 +64,7 @@ public class Lion : AnimationSprite
         if (idle)
         {
             _animationTimer += Time.deltaTime;
-            int frame = (int)(_animationTimer / _animationSpeed) % 10 + 42;
+            int frame = (int)(_animationTimer / _animationSpeed) % 10 + 45;
 
             SetFrame(frame);
         }

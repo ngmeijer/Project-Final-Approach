@@ -4,6 +4,7 @@ using GXPEngine;
 public class GameManager : GameObject
 {
     public Menu _menu { get; private set; }
+
     public HUD _gameHUD { get; private set; }
 
     public SoundManager soundManager;
@@ -31,6 +32,15 @@ public class GameManager : GameObject
     private bool feedingMonkey;
     private bool pettingMonkey;
     private bool cleaningMonkey;
+    private bool feedingZebra;
+    private bool pettingZebra;
+    private bool cleaningZebra;
+    private bool feedingGiraffe;
+    private bool pettingGiraffe;
+    private bool cleaningGiraffe;
+    private bool feedingPenguin;
+    private bool pettingPenguin;
+    private bool cleaningPenguin;
 
     public GameManager()
     {
@@ -68,7 +78,6 @@ public class GameManager : GameObject
         SendXpDataToHUD();
         CheckAnimalLevelProgress();
         HandleAnimalAnimations();
-        HandleSounds();
         SendDataToOptionsMenu();
     }
     private void onAnimalClicked(Sprite pSprite)
@@ -345,18 +354,23 @@ public class GameManager : GameObject
         if (residence.penguinActive && _gameHUD.cleaning)
         {
             scoreTracker.penguinXp += cleaningXp;
+            cleaningPenguin = true;
+            soundManager.cleanSound.Play(false, 0, 1);
             _gameHUD.cleaning = false;
         }
 
         if (residence.penguinActive && _gameHUD.feeding)
         {
             scoreTracker.penguinXp += feedingXp;
+            feedingPenguin = true;
+            soundManager.feedSound.Play(false, 0, 1);
             _gameHUD.feeding = false;
         }
 
         if (residence.penguinActive && _gameHUD.petting)
         {
             scoreTracker.penguinXp += pettingXp;
+            pettingPenguin = true;
             _gameHUD.petting = false;
         }
         ///
@@ -365,6 +379,7 @@ public class GameManager : GameObject
         if (residence.monkeyActive && _gameHUD.cleaning)
         {
             scoreTracker.monkeyXp += cleaningXp;
+            soundManager.cleanSound.Play(false, 0, 1);
             cleaningMonkey = true;
             _gameHUD.cleaning = false;
         }
@@ -372,6 +387,7 @@ public class GameManager : GameObject
         if (residence.monkeyActive && _gameHUD.feeding)
         {
             scoreTracker.monkeyXp += feedingXp;
+            soundManager.feedSound.Play(false, 0, 1);
             feedingMonkey = true;
             _gameHUD.feeding = false;
         }
@@ -388,6 +404,7 @@ public class GameManager : GameObject
         if (residence.lionActive && _gameHUD.cleaning)
         {
             scoreTracker.lionXp += cleaningXp;
+            soundManager.cleanSound.Play(false, 0, 1);
             cleaningLion = true;
             _gameHUD.cleaning = false;
         }
@@ -412,18 +429,23 @@ public class GameManager : GameObject
         if (residence.giraffeActive && _gameHUD.cleaning)
         {
             scoreTracker.giraffeXp += cleaningXp;
+            soundManager.cleanSound.Play(false, 0, 1);
+            cleaningGiraffe = true;
             _gameHUD.cleaning = false;
         }
 
         if (residence.giraffeActive && _gameHUD.feeding)
         {
             scoreTracker.giraffeXp += feedingXp;
+            soundManager.feedSound.Play(false, 0, 1);
+            feedingGiraffe = true;
             _gameHUD.feeding = false;
         }
 
         if (residence.giraffeActive && _gameHUD.petting)
         {
             scoreTracker.giraffeXp += pettingXp;
+            pettingGiraffe = true;
             _gameHUD.petting = false;
         }
         ///
@@ -432,17 +454,22 @@ public class GameManager : GameObject
         if (residence.zebraActive && _gameHUD.cleaning)
         {
             scoreTracker.zebraXp += cleaningXp;
+            cleaningZebra = true;
+            soundManager.cleanSound.Play(false, 0, 1);
             _gameHUD.cleaning = false;
         }
 
         if (residence.zebraActive && _gameHUD.feeding)
         {
             scoreTracker.zebraXp += feedingXp;
+            feedingZebra = true;
+            soundManager.feedSound.Play(false, 0, 1);
             _gameHUD.feeding = false;
         }
 
         if (residence.zebraActive && _gameHUD.petting)
         {
+            pettingZebra = true;
             scoreTracker.zebraXp += pettingXp;
             _gameHUD.petting = false;
         }
@@ -452,12 +479,14 @@ public class GameManager : GameObject
         if (residence.hippoActive && _gameHUD.cleaning)
         {
             scoreTracker.hippoXp += cleaningXp;
+            soundManager.cleanSound.Play(false, 0, 1);
             _gameHUD.cleaning = false;
         }
 
         if (residence.hippoActive && _gameHUD.feeding)
         {
             scoreTracker.hippoXp += feedingXp;
+            soundManager.feedSound.Play(false, 0, 1);
             _gameHUD.feeding = false;
         }
 
@@ -472,12 +501,14 @@ public class GameManager : GameObject
         if (residence.seaLionActive && _gameHUD.cleaning)
         {
             scoreTracker.seaLionXp += cleaningXp;
+            soundManager.cleanSound.Play(false, 0, 1);
             _gameHUD.cleaning = false;
         }
 
         if (residence.seaLionActive && _gameHUD.feeding)
         {
             scoreTracker.seaLionXp += 15;
+            soundManager.feedSound.Play(false, 0, 1);
             _gameHUD.feeding = false;
         }
 
@@ -492,12 +523,14 @@ public class GameManager : GameObject
         if (residence.turtleActive && _gameHUD.cleaning)
         {
             scoreTracker.turtleXp += cleaningXp;
+            soundManager.cleanSound.Play(false, 0, 1);
             _gameHUD.cleaning = false;
         }
 
         if (residence.turtleActive && _gameHUD.feeding)
         {
             scoreTracker.turtleXp += feedingXp;
+            soundManager.feedSound.Play(false, 0, 1);
             _gameHUD.feeding = false;
         }
 
@@ -627,59 +660,116 @@ public class GameManager : GameObject
 
     private void HandleAnimalAnimations()
     {
-        if (residence.lionActive)
+        if (residenceActive)
         {
-            if (feedingLion)
+            if (residence.lionActive)
             {
-                residence._lion.feeding = true;
-                feedingLion = false;
+                if (feedingLion)
+                {
+                    residence._lion.feeding = true;
+                    feedingLion = false;
+                }
+
+                if (pettingLion)
+                {
+                    residence._lion.petting = true;
+                    pettingLion = false;
+                }
+
+                if (cleaningLion)
+                {
+                    residence._lion.cleaning = true;
+                    cleaningLion = false;
+                }
             }
 
-            if (pettingLion)
+            if (residence.zebraActive)
             {
-                residence._lion.petting = true;
-                pettingLion = false;
+                if (feedingZebra)
+                {
+                    residence._zebra.feeding = true;
+                    feedingZebra = false;
+                }
+
+                if (pettingZebra)
+                {
+                    residence._zebra.petting = true;
+                    pettingZebra = false;
+                }
+
+                if (cleaningZebra)
+                {
+                    residence._zebra.cleaning = true;
+                    cleaningZebra = false;
+                }
             }
 
-            if (cleaningLion)
+            if (residence.monkeyActive)
             {
-                residence._lion.cleaning = true;
-                cleaningLion = false;
+                if (feedingMonkey)
+                {
+                    residence._monkey.feeding = true;
+                    feedingMonkey = false;
+                }
+
+                if (pettingMonkey)
+                {
+                    residence._monkey.petting = true;
+                    pettingMonkey = false;
+                }
+
+                if (cleaningMonkey)
+                {
+                    residence._monkey.cleaning = true;
+                    cleaningMonkey = false;
+                }
+            }
+
+            if (residence.giraffeActive)
+            {
+                if (feedingGiraffe)
+                {
+                    residence._giraffe.feeding = true;
+                    feedingGiraffe = false;
+                }
+
+                if (pettingGiraffe)
+                {
+                    residence._giraffe.petting = true;
+                    pettingGiraffe = false;
+                }
+
+                if (cleaningGiraffe)
+                {
+                    residence._giraffe.cleaning = true;
+                    cleaningGiraffe = false;
+                }
+            }
+
+            if (residence.penguinActive)
+            {
+                if (feedingPenguin)
+                {
+                    residence._penguin.feeding = true;
+                    feedingPenguin = false;
+                }
+
+                if (pettingPenguin)
+                {
+                    residence._penguin.petting = true;
+                    pettingPenguin = false;
+                }
+
+                if (cleaningPenguin)
+                {
+                    residence._penguin.cleaning = true;
+                    cleaningPenguin = false;
+                }
             }
         }
-
-        if (residence.monkeyActive)
+        else
         {
-            if (feedingMonkey)
-            {
-                residence._monkey.feeding = true;
-                feedingMonkey = false;
-            }
-
-            if (pettingMonkey)
-            {
-                residence._monkey.petting = true;
-                pettingMonkey = false;
-            }
-
-            if (cleaningMonkey)
-            {
-                residence._monkey.cleaning = true;
-                cleaningMonkey = false;
-            }
-        }
-    }
-
-    private void HandleSounds()
-    {
-        if (_gameHUD.feeding)
-        {
-            //soundManager.feedSound.Play(false, 1, 1);
-        }
-
-        if (_gameHUD.cleaning)
-        {
-            soundManager.cleanSound.Play(false, 1, 1);
+            return;
         }
     }
 

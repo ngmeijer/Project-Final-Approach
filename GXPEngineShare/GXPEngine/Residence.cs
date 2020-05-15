@@ -3,13 +3,13 @@ using GXPEngine;
 
 public class Residence : GameObject
 {
-    public Penguin _penguin { get; set; }
-    private Zebra _zebra;
+    public Penguin _penguin;
+    public Zebra _zebra;
     private SeaLion _seaLion;
     private Turtle _turtle;
     public Monkey _monkey;
     public Lion _lion;
-    private Giraffe _giraffe;
+    public Giraffe _giraffe;
     private Hippo _hippo;
 
     public Sprite _penguinBackground { get; set; }
@@ -54,7 +54,7 @@ public class Residence : GameObject
         _penguin.y = 200;
         penguinActive = false;
         _penguin.visible = false;
-        _penguin.scale = 0.5f;
+        _penguin.scale = 0.9f;
         //
 
         //Zebra residence
@@ -64,11 +64,11 @@ public class Residence : GameObject
 
         _zebra = new Zebra();
         AddChild(_zebra);
-        _zebra.x = game.width / 2;
-        _zebra.y = 200;
+        _zebra.x = game.width / 2 - 115;
+        _zebra.y = 170;
         zebraActive = false;
         _zebra.visible = false;
-        _zebra.scale = 0.5f;
+        _zebra.scale = 1f;
         //
 
         //Sea lion residence

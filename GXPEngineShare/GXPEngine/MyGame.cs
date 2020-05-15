@@ -18,6 +18,6 @@ public class MyGame : Game
 
 	private void Update()
 	{
-		Console.WriteLine(currentFps);
+		//Console.WriteLine(currentFps);
 	}
 }
