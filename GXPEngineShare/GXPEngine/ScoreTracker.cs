@@ -34,7 +34,7 @@ public class ScoreTracker : Canvas
     ///
 
     ///
-    public int _monkeyLevel { get; set; } = 0;
+    public int monkeyLevel { get; set; } = 0;
     public int monkeyXp { get; set; } = 0;
     private float maxXpAmountMonkey = 150;
     ///
@@ -94,9 +94,7 @@ public class ScoreTracker : Canvas
     }
 
     public void TrackXpAmount()
-    {
-        //Console.WriteLine("lion current xp: " + _lionXp + ", lion current level: " + _lionLevel);
-        
+    {        
         #region
 
         if (penguinXp >= maxXpAmountPenguin && penguinLevel < 10)
@@ -127,9 +125,9 @@ public class ScoreTracker : Canvas
             maxXpAmountTurtle *= _multiplier;
         }
 
-        if (monkeyXp >= maxXpAmountMonkey && _monkeyLevel < 10)
+        if (monkeyXp >= maxXpAmountMonkey && monkeyLevel < 10)
         {
-            _monkeyLevel += 1;
+            monkeyLevel += 1;
             monkeyXp = 0;
             maxXpAmountMonkey *= _multiplier;
         }
@@ -156,30 +154,30 @@ public class ScoreTracker : Canvas
         }
 
         //////////////
-        if (lionLevel >= 1 && _monkeyLevel >= 1 && penguinLevel >= 1)
+        if (lionLevel >= 1 && monkeyLevel >= 1 && penguinLevel >= 1)
         {
             unlockedGiraffe = true;
         }
 
-        if (lionLevel >= 2 && _monkeyLevel >= 2 && penguinLevel >= 2 
+        if (lionLevel >= 2 && monkeyLevel >= 2 && penguinLevel >= 2 
             && giraffeLevel >= 2)
         {
             unlockedZebra = true;
         }
 
-        if (lionLevel >= 3 && _monkeyLevel >= 3 && penguinLevel >= 3 
+        if (lionLevel >= 3 && monkeyLevel >= 3 && penguinLevel >= 3 
             && giraffeLevel >= 3 && zebraLevel >= 3)
         {
             unlockedHippo = true;
         }
 
-        if (lionLevel >= 4 && _monkeyLevel >= 4 && penguinLevel >= 4
+        if (lionLevel >= 4 && monkeyLevel >= 4 && penguinLevel >= 4
             && giraffeLevel >= 4 && zebraLevel >= 4 && hippoLevel >= 4)
         {
             unlockedSeaLion = true;
         }
 
-        if (lionLevel >= 5 && _monkeyLevel >= 5 && penguinLevel >= 5
+        if (lionLevel >= 5 && monkeyLevel >= 5 && penguinLevel >= 5
             && giraffeLevel >= 5 && zebraLevel >= 5 
             && hippoLevel >= 5 && _seaLionLevel >= 5)
         {

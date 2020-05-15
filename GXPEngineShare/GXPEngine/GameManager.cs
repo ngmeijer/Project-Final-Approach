@@ -244,6 +244,9 @@ public class GameManager : GameObject
 
                     _gameHUD.herbivore = true;
                     _gameHUD.carnivore = false;
+
+                    _gameHUD.lionActive = false;
+                    _gameHUD.monkeyActive = true;
                     break;
                 case 2:
                     //Lion
@@ -258,6 +261,9 @@ public class GameManager : GameObject
 
                     _gameHUD.carnivore = true;
                     _gameHUD.herbivore = false;
+
+                    _gameHUD.monkeyActive = false;
+                    _gameHUD.lionActive = true;
                     break;
                 case 3:
                     //Giraffe
@@ -505,10 +511,9 @@ public class GameManager : GameObject
 
     private void SendXpDataToHUD()
     {
-        //Penguin
+        _gameHUD.lionLevel = scoreTracker.lionLevel;
         _gameHUD._penguinLevel = scoreTracker.penguinLevel;
-        _gameHUD._penguinCurrentXp = scoreTracker.penguinXp;
-        //
+        _gameHUD.monkeyLevel = scoreTracker.monkeyLevel;
 
         if (_gameHUD.clickedOptions)
         {
@@ -669,13 +674,11 @@ public class GameManager : GameObject
     {
         if (_gameHUD.feeding)
         {
-            Console.WriteLine("playing sound");
             //soundManager.feedSound.Play(false, 1, 1);
         }
 
         if (_gameHUD.cleaning)
         {
-            Console.WriteLine("playing sound");
             soundManager.cleanSound.Play(false, 1, 1);
         }
     }
@@ -684,13 +687,11 @@ public class GameManager : GameObject
     {
         _gameHUD._optionsBackground.penguinLevel = scoreTracker.penguinLevel;
         _gameHUD._optionsBackground.lionLevel = scoreTracker.lionLevel;
-        _gameHUD._optionsBackground._monkeyLevel = scoreTracker._monkeyLevel;
+        _gameHUD._optionsBackground._monkeyLevel = scoreTracker.monkeyLevel;
         _gameHUD._optionsBackground.giraffeLevel = scoreTracker.giraffeLevel;
         _gameHUD._optionsBackground.zebraLevel = scoreTracker.zebraLevel;
         _gameHUD._optionsBackground.hippoLevel = scoreTracker.hippoLevel;
         _gameHUD._optionsBackground._seaLionLevel = scoreTracker._seaLionLevel;
         _gameHUD._optionsBackground._turtleLevel = scoreTracker._turtleLevel;
-
-        Console.WriteLine(_gameHUD._optionsBackground.lionLevel);
     }
 }

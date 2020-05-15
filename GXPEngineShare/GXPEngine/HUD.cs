@@ -49,6 +49,7 @@ public class HUD : Canvas
     public int currentXpAmount = 0;
     private bool showInformationMenu;
     public int lionLevel = 0;
+    public int monkeyLevel = 0;
 
     private Brush _fontColor;
     private Font _font;
@@ -64,7 +65,27 @@ public class HUD : Canvas
     /////////Tips
     EasyDraw lionTip1 = new EasyDraw(1920, 1080);
     EasyDraw lionTip2 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip3 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip4 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip5 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip6 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip7 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip8 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip9 = new EasyDraw(1920, 1080);
+    EasyDraw lionTip10 = new EasyDraw(1920, 1080);
 
+    EasyDraw monkeyTip1 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip2 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip3 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip4 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip5 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip6 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip7 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip8 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip9 = new EasyDraw(1920, 1080);
+    EasyDraw monkeyTip10 = new EasyDraw(1920, 1080);
+    private bool showLionTips;
+    private bool showMonkeyTips;
 
     public HUD() : base(1920, 1080, false)
     {
@@ -158,6 +179,25 @@ public class HUD : Canvas
         /////Tips
         AddChild(lionTip1);
         AddChild(lionTip2);
+        AddChild(lionTip3);
+        AddChild(lionTip4);
+        AddChild(lionTip5);
+        AddChild(lionTip6);
+        AddChild(lionTip7);
+        AddChild(lionTip8);
+        AddChild(lionTip9);
+        AddChild(lionTip10);
+
+        AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
+        //AddChild(monkeyTip1);
     }
 
     private void Update()
@@ -340,26 +380,188 @@ public class HUD : Canvas
 
         if (showInformationMenu)
         {
-            if (lionActive && lionLevel == 0)
+            if (lionActive)
             {
-                lionTip1.graphics.DrawString("Lions are cat-like animals", _font, _fontColor, game.width / 2 - 225, game.height / 2);
+                monkeyActive = false;
+                showLionTips = true;
+                showMonkeyTips = false;
+
+                if (lionLevel == 0)
+                {
+                    lionTip1.graphics.DrawString("Lions are cat-like animals.", _font, _fontColor, game.width / 2 - 225, game.height / 2);
+                }
+
+                if (lionLevel == 1)
+                {
+                    lionTip1.graphics.Clear(Color.Transparent);
+                    lionTip2.graphics.DrawString("Lions are carnivores.", _font, _fontColor, game.width / 2 - 200, game.height / 2);
+                }
+
+                if (lionLevel == 2)
+                {
+                    lionTip2.graphics.Clear(Color.Transparent);
+                    lionTip3.graphics.DrawString("Lions eat mainly ungulates " +
+                                                  "\t\n     ('hoofed animal').", _font, _fontColor, game.width / 2 - 250, game.height / 2);
+                }
+
+                if (lionLevel == 3)
+                {
+                    lionTip3.graphics.Clear(Color.Transparent);
+                    lionTip4.graphics.DrawString("Lions are mammals.", _font, _fontColor, game.width / 2 - 200, game.height / 2);
+                }
+
+                if (lionLevel == 4)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions live in Africa, " +
+                                                 "\t\n  on the savannah.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 5)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions are the kings " +
+                                                "\t\n of the animal kingdom.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 6)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("A lion can live " +
+                                                "\t\n up to 14 years.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 7)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions can weigh " +
+                                                "\t\n up to 190kgs.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 8)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions are very lazy and " +
+                                                "\t\n lay around for " +
+                                                 "\t\n most part of the day.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 9)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions can run as " +
+                                                "\t\n fast as 80km/h.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+            }
+            else
+            {
+                lionActive = false;
             }
 
-            if (lionActive && lionLevel == 1)
+            if (monkeyActive)
             {
-                lionTip1.graphics.Clear(Color.Transparent);
-                lionTip2.graphics.DrawString("Lions are carnivores", _font, _fontColor, game.width / 2 - 200, game.height / 2);
+                monkeyActive = false;
+                showMonkeyTips = true;
+                showLionTips = false;
+
+                if (monkeyLevel == 0)
+                {
+                    monkeyTip1.graphics.DrawString("fddddddddd.", _font, _fontColor, game.width / 2 - 225, game.height / 2);
+                }
+
+                if (lionLevel == 1)
+                {
+                    lionTip1.graphics.Clear(Color.Transparent);
+                    lionTip2.graphics.DrawString("Lions are carnivores.", _font, _fontColor, game.width / 2 - 200, game.height / 2);
+                }
+
+                if (lionLevel == 2)
+                {
+                    lionTip2.graphics.Clear(Color.Transparent);
+                    lionTip3.graphics.DrawString("Lions eat mainly ungulates " +
+                                                  "\t\n     ('hoofed animal').", _font, _fontColor, game.width / 2 - 250, game.height / 2);
+                }
+
+                if (lionLevel == 3)
+                {
+                    lionTip3.graphics.Clear(Color.Transparent);
+                    lionTip4.graphics.DrawString("Lions are mammals.", _font, _fontColor, game.width / 2 - 200, game.height / 2);
+                }
+
+                if (lionLevel == 4)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions live in Africa, " +
+                                                 "\t\n  on the savannah.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 5)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions are the kings " +
+                                                "\t\n of the animal kingdom.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 6)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("A lion can live " +
+                                                "\t\n up to 14 years.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 7)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions can weigh " +
+                                                "\t\n up to 190kgs.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 8)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions are very lazy and " +
+                                                "\t\n lay around for " +
+                                                 "\t\n most part of the day.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
+
+                if (lionLevel == 9)
+                {
+                    lionTip4.graphics.Clear(Color.Transparent);
+                    lionTip5.graphics.DrawString("Lions can run as " +
+                                                "\t\n fast as 80km/h.", _font, _fontColor, game.width / 2 - 180, game.height / 2);
+                }
             }
-
-            if (lionActive && lionLevel == 2)
+            else
             {
-
+                monkeyActive = false;
             }
         }
-        else
+
+        if (!lionActive || !showInformationMenu)
         {
             lionTip1.graphics.Clear(Color.Transparent);
             lionTip2.graphics.Clear(Color.Transparent);
+            lionTip3.graphics.Clear(Color.Transparent);
+            lionTip4.graphics.Clear(Color.Transparent);
+            lionTip5.graphics.Clear(Color.Transparent);
+            lionTip6.graphics.Clear(Color.Transparent);
+            lionTip7.graphics.Clear(Color.Transparent);
+            lionTip8.graphics.Clear(Color.Transparent);
+            lionTip9.graphics.Clear(Color.Transparent);
+            lionTip10.graphics.Clear(Color.Transparent);
+        }
+        if (!showMonkeyTips || !showInformationMenu)
+        {
+            monkeyTip1.graphics.Clear(Color.Transparent);
+            //lionTip2.graphics.Clear(Color.Transparent);
+            //lionTip3.graphics.Clear(Color.Transparent);
+            //lionTip4.graphics.Clear(Color.Transparent);
+            //lionTip5.graphics.Clear(Color.Transparent);
+            //lionTip6.graphics.Clear(Color.Transparent);
+            //lionTip7.graphics.Clear(Color.Transparent);
+            //lionTip8.graphics.Clear(Color.Transparent);
+            //lionTip9.graphics.Clear(Color.Transparent);
+            //lionTip10.graphics.Clear(Color.Transparent);
         }
     }
 
